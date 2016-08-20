@@ -96,7 +96,6 @@
 
         docElem.style.fontSize = baseSize + "px";
         flexible.rem = win.rem = baseSize;
-        console.log('baseSize', baseSize);
     }
 
     // 调整窗口时重置
@@ -128,7 +127,6 @@
     } else {
         doc.addEventListener("DOMContentLoaded", function() {
             doc.body.style.fontSize = 12 * dpr + "px";
-            console.log('--------------', dpr);
         }, false);
     }
 
