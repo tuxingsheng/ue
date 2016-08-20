@@ -16,12 +16,5 @@ html, body, .ue-content {
     padding: 10px;
 }
 
-.ue-bar-nav ~ .ue-content {
-    top: 44px;
-    bottom: 0;
-}
 
-.ue-bar-tab ~ .ue-content {
-    bottom: 50px;
-}
 

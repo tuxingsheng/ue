@@ -78,3 +78,12 @@
     text-overflow: ellipsis;
     color: #929292;
 }
+
+.ue-bar-nav ~ .ue-content {
+    top: 44px;
+    bottom: 0;
+}
+
+.ue-bar-tab ~ .ue-content {
+    bottom: 50px;
+}
