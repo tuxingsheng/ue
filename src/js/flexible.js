@@ -87,8 +87,8 @@
     function setFontSize() {
         var winWidth = docElem.getBoundingClientRect().width;
 
-        if (winWidth / dpr > 540) {
-            (winWidth = 540 * dpr);
+        if (winWidth / dpr >= 768) {
+            (winWidth = 395 * dpr);
         }
 
         // 根节点 fontSize 根据宽度决定
@@ -96,6 +96,7 @@
 
         docElem.style.fontSize = baseSize + "px";
         flexible.rem = win.rem = baseSize;
+        console.log('baseSize', baseSize);
     }
 
     // 调整窗口时重置
@@ -127,6 +128,7 @@
     } else {
         doc.addEventListener("DOMContentLoaded", function() {
             doc.body.style.fontSize = 12 * dpr + "px";
+            console.log('--------------', dpr);
         }, false);
     }
 
