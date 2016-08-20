@@ -1,0 +1,79 @@
+@charset "utf-8";
+/* ue-bar */
+.ue-bar {
+    position: absolute;
+    z-index: 10;
+    height: 44px;
+    border-bottom: 0;
+    background-color: #f8f8f8;
+    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, .85);
+    box-shadow: 0 0 1px rgba(0, 0, 0, .85);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.ue-bar-nav {
+    right: 0;
+    left: 0;
+    padding-right: 10px;
+    padding-left: 10px;
+    line-height: 44px;
+}
+
+.ue-bar-nav .ue-icon {
+    color: #333;
+}
+
+.ue-bar-title {
+    position: absolute;
+    right: 54px;
+    left: 54px;
+    text-align: center;
+    display: inline-block;
+    width: auto;
+    margin: 0 auto;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ue-bar-tab {
+    left: 0;
+    bottom: 0;
+    display: table;
+    height: 50px;
+    line-height: 22px;
+}
+
+.ue-bar-tab a {
+    text-decoration: none;
+}
+
+.ue-bar-tab .ue-icon {
+    position: relative;
+    top: 3px;
+    width: 24px;
+    height: 24px;
+    padding-top: 0;
+    padding-bottom: 0;
+    display: inline-block;
+}
+
+.ue-bar-tab .ue-tab-label {
+    font-size: 11px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ue-tab-item {
+    display: table-cell;
+    overflow: hidden;
+    width: 1%;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #929292;
+}

@@ -1,0 +1,27 @@
+@charset "utf-8";
+/* ue-content */
+html, body, .ue-content {
+    background: #efeff4;
+}
+
+.ue-content {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    z-index: 9;
+}
+
+.ue-content-padded {
+    padding: 10px;
+}
+
+.ue-bar-nav ~ .ue-content {
+    top: 44px;
+    bottom: 0;
+}
+
+.ue-bar-tab ~ .ue-content {
+    bottom: 50px;
+}
+
