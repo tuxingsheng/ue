@@ -17,6 +17,12 @@
     float: right;
 }
 
+.ue-flow {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 /* ue-tap */
 .ue-tap-eee:active {
     background-color: #eee !important;

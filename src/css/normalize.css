@@ -10,6 +10,22 @@ html {
     -webkit-text-size-adjust: 100%; /* 2 */
     font-size: 20px;
 }
+/*
+@media only screen and (min-width: 400px) {
+    html {
+        font-size: 21.33333333px !important;
+    }
+}
+@media only screen and (min-width: 414px) {
+    html {
+        font-size: 22.08px !important;
+    }
+}
+@media only screen and (min-width: 480px) {
+    html {
+        font-size: 25.6px !important;
+    }
+}*/
 
 /**
  * Remove the margin in all browsers (opinionated).
@@ -419,8 +435,15 @@ textarea {
     font: inherit; /* 2 */
 }
 
-ul, ol {
+ul, ol, p {
     margin: 0;
     padding: 0;
+}
+
+ul, ol {
     list-style: none;
+}
+
+a {
+    text-decoration: none;
 }
