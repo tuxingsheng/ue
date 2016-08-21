@@ -184,7 +184,7 @@
          * */
         this.initElementMap = function () {
             var el = document.querySelectorAll(this.defaults.el);
-			if(!this.util.isEmpty(el)){
+			if(el.length != 0){
 				this.count = 0;
 				this.elements = [];
 				this.util.each(el, function (i, e) {
