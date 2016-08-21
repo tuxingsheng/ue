@@ -184,23 +184,25 @@
          * */
         this.initElementMap = function () {
             var el = document.querySelectorAll(this.defaults.el);
-            this.count = 0;
-            this.elements = [];
-            this.util.each(el, function (i, e) {
-                if (e.getAttribute('data-' + this.dataSrc)) {
-                    // 如果不存在placeholder，弹出警告
-                    if (this.util.isEmpty(this.defaults.placeholder)) {
-                        this.util.warn('param placeholder can not be empty ');
-                        return false;
-                    }
-                    this.count++;
-                    if (!e.getAttribute('data-lazy-id')) {
-                        e.setAttribute('data-lazy-id', this.count);
-                    }
-                    e.src = this.defaults.placeholder;
-                    this.elements.push(e);
-                }
-            }.bind(this));
+			if(!this.util.isEmpty(el)){
+				this.count = 0;
+				this.elements = [];
+				this.util.each(el, function (i, e) {
+					if (e.getAttribute('data-' + this.dataSrc)) {
+						// 如果不存在placeholder，弹出警告
+						if (this.util.isEmpty(this.defaults.placeholder)) {
+							this.util.warn('param placeholder can not be empty ');
+							return false;
+						}
+						this.count++;
+						if (!e.getAttribute('data-lazy-id')) {
+							e.setAttribute('data-lazy-id', this.count);
+						}
+						e.src = this.defaults.placeholder;
+						this.elements.push(e);
+					}
+				}.bind(this));
+			}
         };
 
         /*
