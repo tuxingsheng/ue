@@ -108,7 +108,7 @@
             each: function (obj, fn) {
                 if (obj) {
                     var i = 0;
-                    if (obj.lenghth) {
+                    if (obj.length) {
                         for (var n = obj.length; i < n; i++) {
                             if (fn(i, obj[i]) === false)
                                 break
