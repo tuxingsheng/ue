@@ -204,11 +204,13 @@
          * 动态创建dotty
          * */
         this.createDotty = function () {
-            var dom = '', i = 0;
-            for (; i < this.len; i++) {
-                dom += '<div></div>';
+            var dom = '', i = 0, indicators = doc.querySelectorAll('.ue-slider-indicator > div');
+            if (indicators.length == 0) {
+                for (; i < this.len; i++) {
+                    dom += '<div></div>';
+                }
+                doc.querySelector('.ue-slider-indicator').innerHTML = dom;
             }
-            doc.querySelector('.ue-slider-indicator').innerHTML = dom;
         };
 
         /*
@@ -217,11 +219,9 @@
         this.dotty = function (n) {
             var indicators = doc.querySelectorAll('.ue-slider-indicator > div');
             this.util.each(indicators, function (i, e) {
-                e.removeAttribute('class');
+                e.classList.remove('ue-active');
             });
-            if (indicators[n]) {
-                indicators[n].setAttribute('class', 'ue-active');
-            }
+            indicators[n].classList.add('ue-active');
         };
 
         this.init();
