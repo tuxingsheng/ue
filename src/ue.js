@@ -2140,7 +2140,8 @@
      * */
     var appScroll = new IScroll('.ue-content', {
         scrollbars: true,
-        tap: true
+        tap: true,
+        fadeScrollbars: true
     });
     ['DOMContentLoaded', 'load', 'pageshow', 'resize', 'mousewheel', 'scroll'].forEach(function (e, i) {
         window.addEventListener(e, function () {
