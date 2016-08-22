@@ -144,6 +144,13 @@
                     this.autoPlay();
                 }
             }.bind(this));
+
+            /*
+             * 旋转重新计算宽度
+             * */
+            win.addEventListener('orientationchange', function () {
+                this.initSetWidth();
+            }.bind(this), false);
         };
 
         /*
