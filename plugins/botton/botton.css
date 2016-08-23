@@ -26,9 +26,6 @@
     background-color: #fff;
     background-clip: padding-box;
     outline: 0;
-    -webkit-user-modify: read-write-plaintext-only;
-    box-shadow: none;
-    outline: none;
 }
 
 
