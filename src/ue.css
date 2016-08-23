@@ -928,6 +928,12 @@ html, body, .ue-content {
     content: '\e588';
 }
 
+/* iconfont aux css */
+
+.ue-icon-back-aux {
+    
+}
+
 /* iconfont end */
 
 /* grid（默认移动设备）start */
