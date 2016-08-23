@@ -5,13 +5,21 @@
  * 1. Change the default font family in all browsers (opinionated).
  * 2. Prevent adjustments of font size after orientation changes in IE and iOS.
  */
-*
-{
+* {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     -webkit-user-select: none;
     outline: none;
-    -webkit-tap-highlight-color: transparent;
+}
+
+button,
+html input[type='button'],
+input[type='reset'],
+input[type='submit']
+{
+    cursor: pointer;
+
+    -webkit-appearance: button;
 }
 
 html {
