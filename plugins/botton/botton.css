@@ -25,7 +25,7 @@
     border-radius: 3px;
     background-color: #fff;
     background-clip: padding-box;
-    outline: none;
+    outline: 0;
 }
 
 .ue-btn:disabled {
