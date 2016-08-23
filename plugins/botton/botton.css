@@ -26,6 +26,7 @@
     background-color: #fff;
     background-clip: padding-box;
     outline: 0;
+    outline-color: transparent;
 }
 
 .ue-btn:disabled {
