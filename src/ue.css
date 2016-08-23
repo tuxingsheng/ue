@@ -12,14 +12,8 @@
     outline: none;
 }
 
-button,
-html input[type='button'],
-input[type='reset'],
-input[type='submit']
-{
-    cursor: pointer;
-
-    -webkit-appearance: button;
+button {
+    border: none;
 }
 
 html {
