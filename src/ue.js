@@ -1034,7 +1034,8 @@
      * 初始化自动执行
      * */
     var appScroll = new IScroll('.ue-content', {
-        tap: true
+        tap: true,
+        click: true
     });
     ['DOMContentLoaded', 'load', 'pageshow', 'resize', 'mousewheel', 'scroll'].forEach(function (e, i) {
         window.addEventListener(e, function () {

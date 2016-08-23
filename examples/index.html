@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>ue components examples</title>
+    <script type="text/javascript" src="../src/ue-flex.js"></script>
+    <link rel="stylesheet" href="../src/ue.css">
+    <style>
+        html, body, .ue-content {
+            background-color: #fff;
+        }
+
+        .mint-cell {
+            position: relative;
+            padding: 15px 10px;
+            font-size: 16px;
+            font-weight: bold;
+            display: block;
+            background-color: #fff;
+        }
+
+        .mint-cell:after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #ccc;
+        }
+
+        .mint-cell a {
+            color: #000;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<!-- 固定顶部 -->
+<header class="ue-bar ue-bar-nav ue-clearfix">
+    <a class="ue-icon ue-icon-left-nav ue-pull-left ue-tap-class-eee" href="javascript:window.history.back();" style="padding: 10px;"></a>
+    <h4 class="ue-bar-title">ue components</h4>
+</header>
+<!-- 固定顶部 -->
+<!-- 页面主体 -->
+<div class="ue-content" id="appScroll">
+    <div class="ue-content-fluid">
+        <ul>
+            <li class="mint-cell" style="cursor: pointer;">
+                <a href="./index/index.html">综合实例</a>
+            </li>
+            <li class="mint-cell" style="cursor: pointer;">
+                <a href="./toast/index.html">toast</a>
+            </li>
+            <li class="mint-cell">
+                <a href="./lazyLoadImg/index.html">lazyLoadImg</a>
+            </li>
+            <li class="mint-cell">
+                <a href="./slider/index.html">slider</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- 页面主体 -->
+</body>
+<script type="text/javascript" src="../src/ue.js"></script>
+</html>

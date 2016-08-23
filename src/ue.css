@@ -5,6 +5,10 @@
  * 1. Change the default font family in all browsers (opinionated).
  * 2. Prevent adjustments of font size after orientation changes in IE and iOS.
  */
+* {
+    box-sizing: border-box;
+}
+
 html {
     font-family: sans-serif; /* 1 */
     -ms-text-size-adjust: 100%; /* 2 */
@@ -542,12 +546,16 @@ html, body, .ue-content {
 
 /* ue-tap */
 .ue-tap-eee:active {
-    background-color: #eee !important;
+    background-color: #eee!important;
+}
+
+.ue-tap-fff:active {
+    background-color: #fff!important;
 }
 
 /* ue-tap-class */
 .ue-tap-class-eee:active:before {
-    color: #ccc !important;
+    color: #ccc!important;
 }
 
 /* ue-class end */
