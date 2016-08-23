@@ -26,11 +26,11 @@
     background-color: #fff;
     background-clip: padding-box;
     outline: 0;
+    -webkit-user-modify: read-write-plaintext-only;
+    box-shadow: none;
+    outline: none;
 }
 
-.ue-btn:focus {
-    outline: 0;
-}
 
 .ue-btn:disabled {
     opacity: .6;
