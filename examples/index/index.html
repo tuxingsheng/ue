@@ -54,25 +54,29 @@
 <div class="ue-content" id="appScroll">
     <div class="ue-content-fluid">
         <!-- 轮播图 -->
-        <div id="slider">
-            <div class="ue-clearfix ue-slider">
-                <div class="ue-slider-body">
-                    <img src="http://img.modouyu.net/201608/18/other/1471503673.jpg@0r_900w_502h_1e_1c_1pr.jpg">
-                </div>
-                <div class="ue-slider-body">
-                    <img src="http://img.modouyu.net/201607/01/other/1467336962.jpg@0r_900w_502h_1e_1c_1pr.jpg">
-                </div>
-                <div class="ue-slider-body">
-                    <img src="http://img.modouyu.net/201607/01/other/1467337012.jpg@0r_900w_502h_1e_1c_1pr.jpg">
-                </div>
-                <div class="ue-slider-body">
-                    <img src="http://img.modouyu.net/201608/18/other/1471503673.jpg@0r_900w_502h_1e_1c_1pr.jpg">
-                </div>
-                <div class="ue-slider-body">
-                    <img src="http://img.modouyu.net/201608/18/other/1471503673.jpg@0r_900w_502h_1e_1c_1pr.jpg">
-                </div>
-            </div>
-            <div class="ue-slider-indicator"></div>
+        <div class="ue-slider">
+            <ul class="ue-slider-content">
+                <li class="ue-slider-body">
+                    <a href="javascript:;">
+                        <img src="http://img.modouyu.net/201608/18/other/1471503673.jpg@0r_900w_502h_1e_1c_1pr.jpg"/>
+                    </a>
+                </li>
+                <li class="ue-slider-body">
+                    <a href="javascript:;">
+                        <img src="http://img.modouyu.net/201607/01/other/1467336962.jpg@0r_900w_502h_1e_1c_1pr.jpg"/>
+                    </a>
+                </li>
+                <li class="ue-slider-body">
+                    <a href="javascript:;">
+                        <img src="http://img.modouyu.net/201607/01/other/1467337012.jpg@0r_900w_502h_1e_1c_1pr.jpg"/>
+                    </a>
+                </li>
+                <li class="ue-slider-body">
+                    <a href="javascript:;">
+                        <img src="http://img.modouyu.net/201607/01/other/1467337012.jpg@0r_900w_502h_1e_1c_1pr.jpg"/>
+                    </a>
+                </li>
+            </ul>
         </div>
         <!-- 轮播图 -->
         <!-- 图文列表 -->
@@ -288,7 +292,7 @@
 </body>
 <script type="text/javascript" src="../../src/ue.js"></script>
 <script type="text/javascript" src="../../plugins/lazyLoadImg/lazyloadImg-1.0.js"></script>
-<script type="text/javascript" src="../../plugins/slider/slider.js"></script>
+<script type="text/javascript" src="../../plugins/slider/slider-2.0.js"></script>
 <script type="text/javascript" src="../../plugins/toast/toast.js"></script>
 <script>
     var lazyloadImg = new LazyloadImg({
@@ -298,11 +302,11 @@
         bottom: 50
     });
 
-    new Slider({
-        el: '#slider',
-        duration: 5000
+    var slider = new Slider({
+        el: '.ue-slider',
+        autoTime: 4000
     });
 
-    toast('欢迎来到ue世界', 3000);
+    //toast('欢迎来到ue世界', 3000);
 </script>
 </html>
