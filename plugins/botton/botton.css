@@ -26,14 +26,16 @@
     background-color: #fff;
     background-clip: padding-box;
     outline: 0;
-    outline-color: transparent;
+}
+
+.ue-btn:focus {
+    outline: 0;
 }
 
 .ue-btn:disabled {
     opacity: .6;
     cursor: default;
 }
-
 
 /* 颜色 */
 .ue-btn-danger {
