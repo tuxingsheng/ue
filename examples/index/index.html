@@ -20,6 +20,37 @@
             width: 100%;
             height: 4.1rem;
         }
+
+        .aaa {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background-color: rgba(0, 0, 0, .8);
+            z-index: 99;
+            /*display: none;*/
+
+            -webkit-transition: -webkit-transform .3s ease-out .1s;
+            transition: -webkit-transform .3s ease-out .1s;
+            transition: transform .3s ease-out .1s;
+            transition: transform .3s ease-out .1s, -webkit-transform .3s ease-out .1s;
+
+            -webkit-transform: translate3d(0, -100%, 0);
+            -moz-transform: translate3d(0, -100%, 0);
+            -ms-transform: translate3d(0, -100%, 0);
+            -o-transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%, 0);
+
+        }
+
+        .bbb {
+            -webkit-transform: translate3d(0, 0, 0);
+            -moz-transform: translate3d(0, 0, 0);
+            -ms-transform: translate3d(0, 0, 0);
+            -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
     </style>
 </head>
 <body>
@@ -288,6 +319,7 @@
     </div>
 </div>
 <!-- 页面主体 -->
+<div class="aaa"></div>
 
 </body>
 <script type="text/javascript" src="../../src/ue.js"></script>
@@ -307,6 +339,6 @@
         autoTime: 4000
     });
 
-    //toast('欢迎来到ue世界', 3000);
+    toast('欢迎来到ue世界', 2000);
 </script>
 </html>

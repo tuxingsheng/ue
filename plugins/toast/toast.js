@@ -20,11 +20,13 @@
 })(function () {
     'use strict';
 
-    function toast(msg, time) {
+    function toast(msg, time, type) {
         var toast = document.createElement('div');
         toast.classList.add('ue-toast');
         toast.innerText = msg;
+        toast.classList.add(type == 'center' ? 'ue-toast-center' : 'ue-toast-bottom');
         document.body.appendChild(toast);
+
         setTimeout(function () {
             toast.parentNode.removeChild(toast);
         }, time || 2000);
