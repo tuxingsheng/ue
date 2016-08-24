@@ -203,10 +203,9 @@
          * */
         this.bindEvent = function () {
             var self = this;
-            alert(document.querySelectorAll('.ue-dialog-buttons > div').length);
             document.querySelectorAll('.ue-dialog-buttons > div').forEach(function (e, i) {
-                e.addEventListener('touchstart', function () { self.defaults.before(e.dataset.dialogId); }, false);
-                e.addEventListener('touchend', function () { self.defaults.after(e.dataset.dialogId); }, false);
+                e.addEventListener('click', function () { self.defaults.before(e.dataset.dialogId); }, false);
+                e.addEventListener('click', function () { self.defaults.after(e.dataset.dialogId); }, false);
             });
         };
 
