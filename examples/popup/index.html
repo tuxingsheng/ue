@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>popup</title>
+    <script type="text/javascript" src="../../src/ue-flex.js"></script>
+    <link rel="stylesheet" href="../../src/ue.css">
+    <link rel="stylesheet" href="../../plugins/botton/botton.css">
+    <link rel="stylesheet" href="../../plugins/popup/popup.css">
+    <style>
+        html, body, .ue-content {
+            background-color: #fff;
+        }
+
+        .ue-btn-group {
+            margin: 15px 0;
+        }
+
+    </style>
+</head>
+<body>
+<!-- 固定顶部 -->
+<header class="ue-bar ue-bar-nav ue-clearfix">
+    <a class="ue-icon ue-icon-back ue-pull-left ue-tap-class-eee" href="javascript:window.history.back();"
+       style="padding: 10px 0;"></a>
+    <h4 class="ue-bar-title">popup</h4>
+</header>
+<!-- 固定顶部 -->
+<!-- 页面主体 -->
+<div class="ue-content" id="appScroll">
+    <div class="ue-content-padded">
+        <div class="ue-btn-group">
+            <button type="button" class="ue-btn ue-btn-block" data-popup="#appPopup">open appPopup</button>
+        </div>
+    </div>
+</div>
+<!-- 页面主体 -->
+
+<!-- popup page -->
+<div class="ue-popup ue-popup-bottom" id="appPopup">
+    <div class="ue-popup-bottom-content">
+        <div class="ue-content-padded">
+            <div class="ue-btn-group">
+                <button type="button" class="ue-btn ue-btn-block" data-popup="#appPopup">close appPopup</button>
+            </div>
+            <div class="ue-btn-group">
+                <button type="button" class="ue-btn ue-btn-block" data-popup="#aboutPopup">open aboutPopup</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- popup page -->
+
+<!-- popup page -->
+<div class="ue-popup ue-popup-right" id="aboutPopup">
+    <div class="ue-popup-right-content" style="background-color: #ccc;">
+        <div class="ue-content-padded">
+            <div class="ue-btn-group">
+                <button type="button" class="ue-btn ue-btn-block" data-popup="#aboutPopup">close aboutPopup</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- popup page -->
+
+
+</body>
+<script type="text/javascript" src="../../src/ue.js"></script>
+<script type="text/javascript" src="../../plugins/popup/popup.js"></script>
+<script>
+    /*document.querySelector('#popup').addEventListener('click', function () {
+        document.querySelector('.ue-popup').classList.add('ue-active');
+    }, false);
+
+    document.querySelector('.ue-popup').addEventListener('click', function () {
+        document.querySelector('.ue-popup').classList.remove('ue-active');
+    }, false);
+
+    var v = document.body.getBoundingClientRect();
+    console.log(v)*/
+</script>
+</html>
