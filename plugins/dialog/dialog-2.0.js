@@ -170,11 +170,12 @@
             this.oDialog.innerHTML = ueDialog;
             document.body.appendChild(this.oDialog);
 
+            alert('-+++++++++++++++++++++++++');
             setTimeout(function () {
                 this.showDialog();
                 this.bindEvent();
 
-                alert(document.querySelector('.ue-dialog-content'));
+                alert('-------------------');
                 document.querySelector('.ue-dialog-content').addEventListener('click', function(){
                     alert('content');
                 }, false);
