@@ -247,6 +247,7 @@ select,
 textarea {
     font: inherit; /* 1 */
     margin: 0; /* 2 */
+    color: inherit;
 }
 
 /**
@@ -283,6 +284,7 @@ button,
 html [type="button"], /* 1 */
 [type="reset"],
 [type="submit"] {
+    cursor: pointer;
     -webkit-appearance: button; /* 2 */
 }
 
