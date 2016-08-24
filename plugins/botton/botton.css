@@ -169,7 +169,6 @@ input[type='submit']:enabled:active, input[type='submit'].ue-active:enabled,
 .ue-btn-link {
     padding-top: 6px;
     padding-bottom: 6px;
-
     color: #007aff;
     border: 0;
     background-color: transparent;

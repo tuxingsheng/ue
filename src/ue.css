@@ -407,6 +407,51 @@ a {
 
 /* normalize end */
 
+/* basis start */
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+h1, .ue-h1 {
+    font-size: 36px;
+}
+
+h2, .ue-h2 {
+    font-size: 30px;
+}
+
+h3, .ue-h3 {
+    font-size: 24px;
+}
+
+h4, .ue-h4 {
+    font-size: 18px;
+}
+
+h5, .ue-h5 {
+    font-size: 14px;
+    font-weight: normal;
+    color: #8f8f94;
+}
+
+h6, .ue-h6 {
+    font-size: 12px;
+    font-weight: normal;
+    color: #8f8f94;
+}
+
+p {
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #8f8f94;
+}
+
+/* basis end */
+
 /* ue-bar start */
 
 .ue-bar {
@@ -440,6 +485,8 @@ a {
     text-align: center;
     display: inline-block;
     width: auto;
+    height: 44px;
+    line-height: 44px;
     margin: 0 auto;
     overflow: hidden;
     white-space: nowrap;
@@ -1017,51 +1064,51 @@ html, body, .ue-content {
 }
 
 @media (min-width: 768px) {
-    .mui-col-sm-12 {
+    .ue-col-sm-12 {
         width: 100%;
     }
 
-    .mui-col-sm-11 {
+    .ue-col-sm-11 {
         width: 91.66666667%;
     }
 
-    .mui-col-sm-10 {
+    .ue-col-sm-10 {
         width: 83.33333333%;
     }
 
-    .mui-col-sm-9 {
+    .ue-col-sm-9 {
         width: 75%;
     }
 
-    .mui-col-sm-8 {
+    .ue-col-sm-8 {
         width: 66.66666667%;
     }
 
-    .mui-col-sm-7 {
+    .ue-col-sm-7 {
         width: 58.33333333%;
     }
 
-    .mui-col-sm-6 {
+    .ue-col-sm-6 {
         width: 50%;
     }
 
-    .mui-col-sm-5 {
+    .ue-col-sm-5 {
         width: 41.66666667%;
     }
 
-    .mui-col-sm-4 {
+    .ue-col-sm-4 {
         width: 33.33333333%;
     }
 
-    .mui-col-sm-3 {
+    .ue-col-sm-3 {
         width: 25%;
     }
 
-    .mui-col-sm-2 {
+    .ue-col-sm-2 {
         width: 16.66666667%;
     }
 
-    .mui-col-sm-1 {
+    .ue-col-sm-1 {
         width: 8.33333333%;
     }
 }
