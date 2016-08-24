@@ -205,6 +205,7 @@
             var self = this;
             document.querySelectorAll('.ue-dialog-buttons > div').forEach(function (e, i) {
                 e.addEventListener('touchstart', function () {
+                    alert('touchstart');
                     self.defaults.before(e.dataset.dialogId);
                 }, false);
                 e.addEventListener('touchend', function () {
