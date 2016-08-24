@@ -170,15 +170,10 @@
             this.oDialog.innerHTML = ueDialog;
             document.body.appendChild(this.oDialog);
 
-            alert('-+++++++++++++++++++++++++');
-
-            this.showDialog();
-            this.bindEvent();
-
-            /*setTimeout(function () {
-
-
-             }.bind(this), 0);*/
+            setTimeout(function () {
+                this.showDialog();
+                this.bindEvent();
+            }.bind(this), 0);
         };
 
         /*
@@ -207,29 +202,12 @@
          * 绑定事件
          * */
         this.bindEvent = function () {
-            var self = this;
-            alert('************************');
-
-            var aBtn = document.querySelectorAll('.ue-dialog-buttons > div');
+            var self = this,
+                aBtn = document.querySelectorAll('.ue-dialog-buttons > div');
             this.util.each(aBtn, function (i, e) {
-                e.addEventListener('touchstart', function () {
-                    self.defaults.before(e.dataset.dialogId);
-                }, false);
-                e.addEventListener('touchend', function () {
-                    self.defaults.after(e.dataset.dialogId);
-                }, false);
-                alert(e);
+                e.addEventListener('touchstart', function () { self.defaults.before(e.dataset.dialogId); }, false);
+                e.addEventListener('touchend', function () { self.defaults.after(e.dataset.dialogId); }, false);
             });
-            /*document.querySelectorAll('.ue-dialog-buttons > div').forEach(function (e, i) {
-                e.addEventListener('touchstart', function () {
-                    self.defaults.before(e.dataset.dialogId);
-                }, false);
-                e.addEventListener('touchend', function () {
-                    self.defaults.after(e.dataset.dialogId);
-                }, false);
-                alert(e);
-                alert('event');
-            });*/
         };
 
         this.init();
