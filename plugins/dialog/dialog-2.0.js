@@ -174,9 +174,14 @@
                 this.showDialog();
                 this.bindEvent();
 
+                alert(document.querySelector('.ue-dialog-content'));
                 document.querySelector('.ue-dialog-content').addEventListener('click', function(){
                     alert('content');
                 }, false);
+
+                document.querySelector('.ue-dialog-content').onclick = function(){
+                    alert('content');
+                };
 
                 document.querySelector('.ue-dialog-mask').addEventListener('click', function(){
                     alert('mask');
