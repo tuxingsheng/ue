@@ -8,6 +8,7 @@
  * title            dialog标题
  * message          dialog文本内容
  * groupBtn         dialog按钮组
+ * isShowTitle      是否显示title
  * before           dialog点击执行之前的回调
  * after            dialog点击执行之后的回调
  * close            dialog被删除之后的回调
@@ -107,6 +108,7 @@
             title: '温馨提示',
             message: '欢迎来到ue世界',
             groupBtn: ['确定'],
+            isShowTitle: true,
             before: function (e) {
 
             },
@@ -153,7 +155,11 @@
             this.oDialog = document.createElement('div');
             this.oDialog.className = 'ue-dialog';
 
-            var ueDialogBtnGroup = '', i = 0;
+            var ueDialogBtnGroup = '', ueDialogTitle = '', i = 0;
+
+            if (this.defaults.isShowTitle) {
+                ueDialogTitle = '<div class="ue-dialog-title">' + (this.defaults.title) + '</div>';
+            }
 
             for (; i < this.defaults.groupBtn.length; i++) {
                 ueDialogBtnGroup += '<div data-dialog-id="' + (i) + '">' + (this.defaults.groupBtn[i]) + '</div>';
@@ -161,10 +167,7 @@
 
             var ueDialog = '<div class="ue-dialog-mask"></div>\
                             <div class="ue-dialog-content">\
-                                <div class="ue-dialog-inner">\
-                                    <div class="ue-dialog-title">' + (this.defaults.title) + '</div>\
-                                    <div class="ue-dialog-text">' + (this.defaults.message) + '</div>\
-                                </div>\
+                                <div class="ue-dialog-inner"> ' + (ueDialogTitle) + ' <div class="ue-dialog-text">' + (this.defaults.message) + '</div></div>\
                             <div class="ue-dialog-buttons">' + (ueDialogBtnGroup) + '</div>';
 
             this.oDialog.innerHTML = ueDialog;
@@ -205,8 +208,12 @@
             var self = this,
                 aBtn = document.querySelectorAll('.ue-dialog-buttons > div');
             this.util.each(aBtn, function (i, e) {
-                e.addEventListener('touchstart', function () { self.defaults.before(e.dataset.dialogId); }, false);
-                e.addEventListener('touchend', function () { self.defaults.after(e.dataset.dialogId); }, false);
+                e.addEventListener('touchstart', function () {
+                    self.defaults.before(e.dataset.dialogId);
+                }, false);
+                e.addEventListener('touchend', function () {
+                    self.defaults.after(e.dataset.dialogId);
+                }, false);
             });
         };
 
@@ -219,11 +226,13 @@
          * @param {Object} opts
          * @param opts.title  dialog标题
          * @param opts.message  dialog文本内容
+         * @param opts.isShowTitle  alert默认不显示title
          * @param opts.callback  dialog点击之后的回调函数
          * */
         alert: function (opts) {
             var da = new Dialog({
                 title: opts.title || '温馨提示',
+                isShowTitle: opts.isShowTitle || false,
                 message: opts.message || '欢迎来到ue世界',
                 after: function (e) {
                     if (e == 0) {
@@ -240,11 +249,13 @@
          * @param {Object} opts
          * @param opts.title  dialog标题
          * @param opts.message  dialog文本内容
+         * @param opts.isShowTitle  confirm默认显示title
          * @param opts.callback  dialog点击之后的回调函数
          * */
         confirm: function (opts) {
             var da = new Dialog({
                 title: opts.title || '温馨提示',
+                isShowTitle: opts.isShowTitle || true,
                 message: opts.message || '欢迎来到ue世界',
                 groupBtn: opts.groupBtn || ['取消', '确定'],
                 after: function (e) {
