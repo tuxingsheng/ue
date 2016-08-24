@@ -1,17 +1,17 @@
 'use strict';
 
 /*
-* 原生js对话框插件，适用于手机端
-* @author          涂兴声
-* @createDate      2016/08/24
-* 名称	           内容
-* title            dialog标题
-* message          dialog文本内容
-* groupBtn         dialog按钮组
-* before           dialog点击执行之前的回调
-* after            dialog点击执行之后的回调
-* close            dialog被删除之后的回调
-* */
+ * 原生js对话框插件，适用于手机端
+ * @author          涂兴声
+ * @createDate      2016/08/24
+ * 名称	           内容
+ * title            dialog标题
+ * message          dialog文本内容
+ * groupBtn         dialog按钮组
+ * before           dialog点击执行之前的回调
+ * after            dialog点击执行之后的回调
+ * close            dialog被删除之后的回调
+ * */
 (function (win, doc) {
 
     function Dialog(options) {
@@ -178,7 +178,7 @@
             /*setTimeout(function () {
 
 
-            }.bind(this), 0);*/
+             }.bind(this), 0);*/
         };
 
         /*
@@ -209,12 +209,27 @@
         this.bindEvent = function () {
             var self = this;
             alert('************************');
-            document.querySelectorAll('.ue-dialog-buttons > div').forEach(function (e, i) {
-                e.addEventListener('touchstart', function () { self.defaults.before(e.dataset.dialogId); }, false);
-                e.addEventListener('touchend', function () { self.defaults.after(e.dataset.dialogId); }, false);
+
+            var aBtn = document.querySelectorAll('.ue-dialog-buttons > div');
+            this.util.each(aBtn, function (i, e) {
+                e.addEventListener('touchstart', function () {
+                    self.defaults.before(e.dataset.dialogId);
+                }, false);
+                e.addEventListener('touchend', function () {
+                    self.defaults.after(e.dataset.dialogId);
+                }, false);
+                alert(e);
+            });
+            /*document.querySelectorAll('.ue-dialog-buttons > div').forEach(function (e, i) {
+                e.addEventListener('touchstart', function () {
+                    self.defaults.before(e.dataset.dialogId);
+                }, false);
+                e.addEventListener('touchend', function () {
+                    self.defaults.after(e.dataset.dialogId);
+                }, false);
                 alert(e);
                 alert('event');
-            });
+            });*/
         };
 
         this.init();
