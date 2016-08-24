@@ -28,8 +28,8 @@
 }
 
 .ue-dialog-content {
-    position: absolute;
-    z-index: 99;
+    position: fixed;
+    z-index: 999;
     left: 50%;
     top: 50%;
     width: 270px;

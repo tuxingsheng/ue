@@ -173,7 +173,7 @@
             setTimeout(function () {
                 this.showDialog();
                 this.bindEvent();
-            }.bind(this), 300);
+            }.bind(this), 0);
         };
 
         /*
@@ -204,8 +204,8 @@
         this.bindEvent = function () {
             var self = this;
             document.querySelectorAll('.ue-dialog-buttons > div').forEach(function (e, i) {
-                e.addEventListener('click', function () { self.defaults.before(e.dataset.dialogId); }, false);
-                e.addEventListener('click', function () { self.defaults.after(e.dataset.dialogId); }, false);
+                e.addEventListener('touchstart', function () { self.defaults.before(e.dataset.dialogId); }, false);
+                e.addEventListener('touchend', function () { self.defaults.after(e.dataset.dialogId); }, false);
             });
         };
 
