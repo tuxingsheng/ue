@@ -175,23 +175,10 @@
             this.showDialog();
             this.bindEvent();
 
-            alert('-------------------');
-            document.querySelector('.ue-dialog-content').addEventListener('click', function(){
-                alert('content');
-            }, false);
-
-            document.querySelector('.ue-dialog-content').onclick = function(){
-                alert('content');
-            };
-
-            document.querySelector('.ue-dialog-mask').addEventListener('click', function(){
-                alert('mask');
-            }, false);
-            
-            setTimeout(function () {
+            /*setTimeout(function () {
 
 
-            }.bind(this), 0);
+            }.bind(this), 0);*/
         };
 
         /*
@@ -221,9 +208,12 @@
          * */
         this.bindEvent = function () {
             var self = this;
+            alert('************************');
             document.querySelectorAll('.ue-dialog-buttons > div').forEach(function (e, i) {
                 e.addEventListener('touchstart', function () { self.defaults.before(e.dataset.dialogId); }, false);
                 e.addEventListener('touchend', function () { self.defaults.after(e.dataset.dialogId); }, false);
+                alert(e);
+                alert('event');
             });
         };
 
