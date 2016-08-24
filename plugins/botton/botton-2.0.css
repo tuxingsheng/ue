@@ -1,0 +1,240 @@
+input[type='button'],
+input[type='submit'],
+input[type='reset'],
+button,
+.ue-btn {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    cursor: pointer;
+    -webkit-transition: all;
+    transition: all;
+    -webkit-transition-timing-function: linear;
+    transition-timing-function: linear;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    text-align: center;
+    vertical-align: top;
+    white-space: nowrap;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    background-color: #fff;
+    background-clip: padding-box;
+}
+
+input[type='button']:enabled:active, input[type='button'].ue-active:enabled,
+input[type='submit']:enabled:active,
+input[type='submit'].ue-active:enabled,
+input[type='reset']:enabled:active,
+input[type='reset'].ue-active:enabled,
+button:enabled:active,
+button.ue-active:enabled,
+.ue-btn:enabled:active,
+.ue-btn.ue-active:enabled {
+    color: #fff;
+    background-color: #929292;
+}
+
+input[type='button']:disabled, input[type='button'].ue-disabled,
+input[type='submit']:disabled,
+input[type='submit'].ue-disabled,
+input[type='reset']:disabled,
+input[type='reset'].ue-disabled,
+button:disabled,
+button.ue-disabled,
+.ue-btn:disabled,
+.ue-btn.ue-disabled {
+    opacity: .6;
+    cursor: default;
+}
+
+input[type='submit'],
+.ue-btn-primary, .ue-btn-blue {
+    color: #fff;
+    border: 1px solid #007aff;
+    background-color: #007aff;
+}
+
+input[type='submit']:enabled:active, input[type='submit'].ue-active:enabled,
+.ue-btn-primary:enabled:active,
+.ue-btn-primary.ue-active:enabled, .ue-btn-blue:enabled:active, .ue-btn-blue.ue-active:enabled {
+    color: #fff;
+    border: 1px solid #0062cc;
+    background-color: #0062cc;
+}
+
+.ue-btn-positive, .ue-btn-success, .ue-btn-green {
+    color: #fff;
+    border: 1px solid #4cd964;
+    background-color: #4cd964;
+}
+
+.ue-btn-positive:enabled:active, .ue-btn-positive.ue-active:enabled, .ue-btn-success:enabled:active, .ue-btn-success.ue-active:enabled, .ue-btn-green:enabled:active, .ue-btn-green.ue-active:enabled {
+    color: #fff;
+    border: 1px solid #2ac845;
+    background-color: #2ac845;
+}
+
+.ue-btn-warning, .ue-btn-yellow {
+    color: #fff;
+    border: 1px solid #f0ad4e;
+    background-color: #f0ad4e;
+}
+
+.ue-btn-warning:enabled:active, .ue-btn-warning.ue-active:enabled, .ue-btn-yellow:enabled:active, .ue-btn-yellow.ue-active:enabled {
+    color: #fff;
+    border: 1px solid #ec971f;
+    background-color: #ec971f;
+}
+
+.ue-btn-negative, .ue-btn-danger, .ue-btn-red {
+    color: #fff;
+    border: 1px solid #dd524d;
+    background-color: #dd524d;
+}
+
+.ue-btn-negative:enabled:active, .ue-btn-negative.ue-active:enabled, .ue-btn-danger:enabled:active, .ue-btn-danger.ue-active:enabled, .ue-btn-red:enabled:active, .ue-btn-red.ue-active:enabled {
+    color: #fff;
+    border: 1px solid #cf2d28;
+    background-color: #cf2d28;
+}
+
+.ue-btn-royal, .ue-btn-purple {
+    color: #fff;
+    border: 1px solid #8a6de9;
+    background-color: #8a6de9;
+}
+
+.ue-btn-royal:enabled:active, .ue-btn-royal.ue-active:enabled, .ue-btn-purple:enabled:active, .ue-btn-purple.ue-active:enabled {
+    color: #fff;
+    border: 1px solid #6641e2;
+    background-color: #6641e2;
+}
+
+.ue-btn-grey {
+    color: #fff;
+    border: 1px solid #c7c7cc;
+    background-color: #c7c7cc;
+}
+
+.ue-btn-grey:enabled:active, .ue-btn-grey.ue-active:enabled {
+    color: #fff;
+    border: 1px solid #acacb4;
+    background-color: #acacb4;
+}
+
+.ue-btn-outlined {
+    background-color: transparent;
+}
+
+.ue-btn-outlined.ue-btn-primary, .ue-btn-outlined.ue-btn-blue {
+    color: #007aff;
+}
+
+.ue-btn-outlined.ue-btn-positive, .ue-btn-outlined.ue-btn-success, .ue-btn-outlined.ue-btn-green {
+    color: #4cd964;
+}
+
+.ue-btn-outlined.ue-btn-warning, .ue-btn-outlined.ue-btn-yellow {
+    color: #f0ad4e;
+}
+
+.ue-btn-outlined.ue-btn-negative, .ue-btn-outlined.ue-btn-danger, .ue-btn-outlined.ue-btn-red {
+    color: #dd524d;
+}
+
+.ue-btn-outlined.ue-btn-royal, .ue-btn-outlined.ue-btn-purple {
+    color: #8a6de9;
+}
+
+.ue-btn-outlined.ue-btn-primary:enabled:active, .ue-btn-outlined.ue-btn-blue:enabled:active, .ue-btn-outlined.ue-btn-positive:enabled:active, .ue-btn-outlined.ue-btn-success:enabled:active, .ue-btn-outlined.ue-btn-green:enabled:active, .ue-btn-outlined.ue-btn-warning:enabled:active, .ue-btn-outlined.ue-btn-yellow:enabled:active, .ue-btn-outlined.ue-btn-negative:enabled:active, .ue-btn-outlined.ue-btn-danger:enabled:active, .ue-btn-outlined.ue-btn-red:enabled:active, .ue-btn-outlined.ue-btn-royal:enabled:active, .ue-btn-outlined.ue-btn-purple:enabled:active {
+    color: #fff;
+}
+
+.ue-btn-link {
+    padding-top: 6px;
+    padding-bottom: 6px;
+
+    color: #007aff;
+    border: 0;
+    background-color: transparent;
+}
+
+.ue-btn-link:enabled:active, .ue-btn-link.ue-active:enabled {
+    color: #0062cc;
+    background-color: transparent;
+}
+
+.ue-btn-block {
+    font-size: 18px;
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.ue-btn .ue-badge {
+    font-size: 14px;
+
+    margin: -2px -4px -2px 4px;
+
+    background-color: rgba(0, 0, 0, .15);
+}
+
+.ue-btn .ue-badge-inverted,
+.ue-btn:enabled:active .ue-badge-inverted {
+    background-color: transparent;
+}
+
+.ue-btn-primary:enabled:active .ue-badge-inverted,
+.ue-btn-positive:enabled:active .ue-badge-inverted,
+.ue-btn-negative:enabled:active .ue-badge-inverted {
+    color: #fff;
+}
+
+.ue-btn-block .ue-badge {
+    position: absolute;
+    right: 0;
+
+    margin-right: 10px;
+}
+
+.ue-btn .ue-icon {
+    font-size: inherit;
+}
+
+.ue-btn.ue-icon {
+    font-size: 14px;
+    line-height: 1.42;
+}
+
+.ue-btn.ue-fab {
+    width: 56px;
+    height: 56px;
+    padding: 16px;
+
+    border-radius: 50%;
+    outline: none;
+}
+
+.ue-btn.ue-fab.ue-btn-mini {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+}
+
+.ue-btn.ue-fab .ue-icon {
+    font-size: 24px;
+    line-height: 24px;
+
+    width: 24px;
+    height: 24px;
+}
