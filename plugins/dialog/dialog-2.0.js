@@ -173,6 +173,15 @@
             setTimeout(function () {
                 this.showDialog();
                 this.bindEvent();
+
+                document.querySelector('.ue-dialog-content').addEventListener('click', function(){
+                    alert('content');
+                }, false);
+
+                document.querySelector('.ue-dialog-mask').addEventListener('click', function(){
+                    alert('mask');
+                }, false);
+
             }.bind(this), 0);
         };
 
