@@ -12,6 +12,7 @@
  * before           dialog点击执行之前的回调
  * after            dialog点击执行之后的回调
  * close            dialog被删除之后的回调
+ * delay            dialog延迟关闭时间
  * */
 (function (win, doc) {
 
@@ -105,6 +106,7 @@
          * Dialog默认配置
          * */
         this.defaults = {
+            delay: 0,
             title: '温馨提示',
             message: '欢迎来到ue世界',
             groupBtn: ['确定'],
@@ -184,21 +186,30 @@
          * */
         this.showDialog = function () {
             this.oDialog.classList.add('ue-active');
+            setTimeout(function () {
+                this.oDialog.querySelector('.ue-dialog-content').classList.add('ue-dialog-content-in');
+            }.bind(this), 0)
         };
 
         /*
          * 隐藏Dialog
          * */
         this.hiddenDialog = function () {
-            this.oDialog.classList.remove('ue-active');
+            this.oDialog.querySelector('.ue-dialog-content').classList.add('ue-dialog-content-out');
+            setTimeout(function () {
+                this.oDialog.classList.remove('ue-active');
+            }.bind(this), this.defaults.delay);
         };
 
         /*
          * 删除Dialog
          * */
         this.removeDialog = function () {
-            document.body.removeChild(this.oDialog);
-            this.defaults.close();
+            this.hiddenDialog();
+            setTimeout(function () {
+                document.body.removeChild(this.oDialog);
+                this.defaults.close();
+            }.bind(this), this.defaults.delay);
         };
 
         /*
@@ -231,6 +242,7 @@
          * */
         alert: function (opts) {
             var da = new Dialog({
+                delay: opts.delay || 200,
                 title: opts.title || '温馨提示',
                 isShowTitle: opts.isShowTitle || false,
                 message: opts.message || '欢迎来到ue世界',
@@ -254,6 +266,7 @@
          * */
         confirm: function (opts) {
             var da = new Dialog({
+                delay: opts.delay || 200,
                 title: opts.title || '温馨提示',
                 isShowTitle: opts.isShowTitle || true,
                 message: opts.message || '欢迎来到ue世界',
