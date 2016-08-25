@@ -87,7 +87,16 @@
 <div class="ue-content" id="appScroll">
     <div class="ue-content-padded">
         <div class="ue-btn-group">
-            <button type="button" class="ue-btn ue-btn-block" data-popup="#appPopup">open appPopup</button>
+            <button type="button" class="ue-btn ue-btn-block" id="jsPopup">open appPopup</button>
+        </div>
+        <div class="ue-btn-group">
+            <p>popup的2种触发方式：</p>
+        </div>
+        <div class="ue-btn-group">
+            <p>1、在触发的html元素上添加自定义属性data-popup，参数是对应的popup的id，如：data-popup="#appPopup"</p>
+        </div>
+        <div class="ue-btn-group">
+            <p>2、引入popup.js，事件触发调用 popup.open()方法，该方法包含2个参数，第一个是对应的popup的id，第二个参数是触发事件的元素或对象，如：popup.open('#appPopup', '#jsPopup') <span style="color: #000;font-weight: bold;">or</span> popup.open('#appPopup', document.querySelector('#jsPopup'));</p>
         </div>
     </div>
 </div>
@@ -122,26 +131,19 @@
 
 
 
-<div id="loading" class="spinner">
+<!--<div id="loading" class="spinner">
     <div class="bounce1"></div>
     <div class="bounce2"></div>
     <div class="bounce3"></div>
-</div>
+</div>-->
 
 
 </body>
 <script type="text/javascript" src="../../src/ue.js"></script>
 <script type="text/javascript" src="../../plugins/popup/popup.js"></script>
 <script>
-    /*document.querySelector('#popup').addEventListener('click', function () {
-        document.querySelector('.ue-popup').classList.add('ue-active');
+    document.querySelector('#jsPopup').addEventListener('click', function () {
+        popup.open('#appPopup', this);
     }, false);
-
-    document.querySelector('.ue-popup').addEventListener('click', function () {
-        document.querySelector('.ue-popup').classList.remove('ue-active');
-    }, false);
-
-    var v = document.body.getBoundingClientRect();
-    console.log(v)*/
 </script>
 </html>
