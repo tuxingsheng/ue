@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
-    <title>ue components examples</title>
+    <title>UE Components</title>
     <script type="text/javascript" src="../src/ue-flex.js"></script>
     <link rel="stylesheet" href="../src/ue.css">
     <style>
@@ -13,7 +13,7 @@
             background-color: #fff;
         }
 
-        .mint-cell {
+        .ue-cell {
             position: relative;
             padding: 15px 10px;
             font-size: 16px;
@@ -22,7 +22,7 @@
             background-color: #fff;
         }
 
-        .mint-cell:after {
+        .ue-title:after, .ue-cell:after {
             content: '';
             display: block;
             position: absolute;
@@ -33,17 +33,40 @@
             background-color: #ccc;
         }
 
-        .mint-cell a {
+        .ue-cell a {
             color: #000;
             display: block;
+        }
+
+        .ue-title {
+            position: relative;
+            background-color: #fafafa;
+            font-size: 16px;
+            text-align: center;
+            padding: 15px 10px;
+            font-weight: bold;
+        }
+
+        .ue-icon-arrowright-aux:before {
+            display: block;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            color: #ccc;
+            -webkit-transform: translate3d(0, -50%, 0);
+            -moz-transform: translate3d(0, -50%, 0);
+            -ms-transform: translate3d(0, -50%, 0);
+            -o-transform: translate3d(0, -50%, 0);
+            transform: translate3d(0, -50%, 0);
         }
     </style>
 </head>
 <body>
 <!-- 固定顶部 -->
 <header class="ue-bar ue-bar-nav ue-clearfix">
-    <a class="ue-icon ue-icon-bars ue-pull-left ue-tap-class-eee" href="javascript:window.history.back();" style="padding: 10px;"></a>
-    <h4 class="ue-bar-title">ue components</h4>
+    <a class="ue-icon ue-icon-bars ue-pull-left ue-tap-class-eee" href="javascript:window.history.back();"
+       style="padding: 10px;"></a>
+    <h4 class="ue-bar-title">UE Components</h4>
 </header>
 
 <!-- 固定顶部 -->
@@ -51,29 +74,42 @@
 <div class="ue-content" id="appScroll">
     <div class="ue-content-fluid">
         <ul>
-            <li class="mint-cell">
-                <a href="./index/index.html">综合实例</a>
+            <li class="ue-title">
+                Css Components
             </li>
-            <li class="mint-cell">
+            <li class="ue-cell ue-icon ue-icon-arrowright ue-icon-arrowright-aux ue-tap-eee">
                 <a href="./basis/index.html">basis</a>
             </li>
-            <li class="mint-cell">
-                <a href="./toast/index.html">toast</a>
-            </li>
-            <li class="mint-cell">
-                <a href="./lazyLoadImg/index.html">lazyLoadImg</a>
-            </li>
-            <li class="mint-cell">
-                <a href="./slider/index.html">slider</a>
-            </li>
-            <li class="mint-cell">
+            <li class="ue-cell ue-icon ue-icon-arrowright ue-icon-arrowright-aux">
                 <a href="./botton/index.html">botton</a>
             </li>
-            <li class="mint-cell">
+        </ul>
+        <ul>
+            <li class="ue-title">
+                Js Components
+            </li>
+            <li class="ue-cell ue-icon ue-icon-arrowright ue-icon-arrowright-aux">
+                <a href="./toast/index.html">toast</a>
+            </li>
+            <li class="ue-cell ue-icon ue-icon-arrowright ue-icon-arrowright-aux">
+                <a href="./lazyLoadImg/index.html">lazyLoadImg</a>
+            </li>
+            <li class="ue-cell ue-icon ue-icon-arrowright ue-icon-arrowright-aux">
+                <a href="./slider/index.html">slider</a>
+            </li>
+            <li class="ue-cell ue-icon ue-icon-arrowright ue-icon-arrowright-aux">
                 <a href="./dialog/index.html">dialog</a>
             </li>
-            <li class="mint-cell">
+            <li class="ue-cell ue-icon ue-icon-arrowright ue-icon-arrowright-aux">
                 <a href="./popup/index.html">popup</a>
+            </li>
+        </ul>
+        <ul>
+            <li class="ue-title">
+                综合实例
+            </li>
+            <li class="ue-cell ue-icon ue-icon-arrowright ue-icon-arrowright-aux">
+                <a href="./index/index.html">综合实例 - 1</a>
             </li>
         </ul>
     </div>
