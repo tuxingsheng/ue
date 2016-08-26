@@ -129,11 +129,6 @@
             var sliderImg = this.sliderBodyList[i].querySelector('img');
             sliderImg.style.height = this.sliderHeight + 'px';
             sliderImg.style.width = this.sliderWidth + 'px';
-            /*if (sliderImg.height / sliderImg.width > this.ratio) {
-                sliderImg.style.height = this.sliderHeight + 'px';
-            } else {
-                sliderImg.style.width = this.sliderWidth + 'px';
-            }*/
         }
         if (this.defaults.pagination) {
             this.createBullet();
