@@ -32,13 +32,13 @@
 
 .ue-slider-body a {
     display: block;
-    width: 100%;
+    width: auto;
     height: 100%;
     vertical-align: middle;
 }
 
 .ue-slider-body img {
-    width: 0;
+    width: 100%;
     height: 100%;
 }
 
