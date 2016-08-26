@@ -9,7 +9,6 @@
     width: 100%;
     height: 100%;
     z-index: 199;
-    background: #fff;
     box-sizing: border-box;
     overflow: auto;
     -webkit-transition: all 5s;
@@ -63,7 +62,6 @@
     transform: translate3d(0, 0, 0);
 }
 
-
 .ue-popup-bottom-content, .ue-popup-top-content, .ue-popup-left-content, .ue-popup-right-content {
     position: absolute;
     left: 0;
@@ -72,6 +70,7 @@
     bottom: auto;
     width: 100%;
     height: 100%;
+    background: #fff;
 }
 
 .ue-popup-bottom-content {
@@ -80,6 +79,16 @@
     right: auto;
     bottom: 0;
     top: auto;
+}
+
+.ue-popup-body-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
+    z-index: 99;
 }
 
 /* ue-popup end */

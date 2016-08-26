@@ -295,7 +295,7 @@
 
         this.options = {
 
-// INSERT POINT: OPTIONS
+            // INSERT POINT: OPTIONS
             disablePointer: !utils.hasPointer,
             disableTouch: utils.hasPointer || !utils.hasTouch,
             disableMouse: utils.hasPointer || utils.hasTouch,
@@ -1041,7 +1041,7 @@
         window.addEventListener(e, function () {
             setTimeout(function () {
                 appScroll.refresh();
-            }, 500);
+            }, 350);
         }, false);
     });
 })(window, document, Math);
