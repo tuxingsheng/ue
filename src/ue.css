@@ -599,16 +599,16 @@ html, body, .ue-content {
 
 /* ue-tap */
 .ue-tap-eee:active {
-    background-color: #eee!important;
+    background-color: #eee !important;
 }
 
 .ue-tap-fff:active {
-    background-color: #fff!important;
+    background-color: #fff !important;
 }
 
 /* ue-tap-class */
 .ue-tap-class-eee:active:before {
-    color: #ccc!important;
+    color: #ccc !important;
 }
 
 /* ue-class end */
@@ -993,8 +993,17 @@ html, body, .ue-content {
 
 /* iconfont aux css */
 
-.ue-icon-back-aux {
-
+.ue-icon-arrowright-aux:before {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    color: #ccc;
+    -webkit-transform: translate3d(0, -50%, 0);
+    -moz-transform: translate3d(0, -50%, 0);
+    -ms-transform: translate3d(0, -50%, 0);
+    -o-transform: translate3d(0, -50%, 0);
+    transform: translate3d(0, -50%, 0);
 }
 
 /* iconfont end */
