@@ -77,8 +77,8 @@
     border-radius: 5px;
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
-    -webkit-transition-duration: 400ms;
-    transition-duration: 400ms;
+    -webkit-transition-duration: 300ms;
+    transition-duration: 300ms;
     -webkit-transition-property: -webkit-transform, opacity;
     transition-property: transform, opacity;
     -webkit-transform: translate3d(-50%, -50%, 0) scale(.7);

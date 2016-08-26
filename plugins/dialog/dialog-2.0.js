@@ -242,7 +242,7 @@
          * */
         alert: function (opts) {
             var da = new Dialog({
-                delay: opts.delay || 200,
+                delay: opts.delay || 300,
                 title: opts.title || '温馨提示',
                 isShowTitle: opts.isShowTitle || false,
                 message: opts.message || '欢迎来到ue世界',
@@ -266,7 +266,7 @@
          * */
         confirm: function (opts) {
             var da = new Dialog({
-                delay: opts.delay || 200,
+                delay: opts.delay || 300,
                 title: opts.title || '温馨提示',
                 isShowTitle: opts.isShowTitle || true,
                 message: opts.message || '欢迎来到ue世界',
