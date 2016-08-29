@@ -2148,8 +2148,6 @@
         scrollWrappers.forEach(function (e, i) {
             // 默认配置
             var defaults = {
-                tap: true,
-                click: true,
                 probeType: 2
             }, opts, k;
             opts = e.dataset.scroll ? JSON.parse(e.dataset.scroll) : {
