@@ -265,22 +265,12 @@
                 ev;
 
             if (!(/(SELECT|INPUT|TEXTAREA)/i).test(target.tagName)) {
-                // https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/initMouseEvent
-                // initMouseEvent is deprecated.
-                ev = document.createEvent(window.MouseEvent ? 'MouseEvents' : 'Event');
-                ev.initEvent('click', true, true);
-                ev.view = e.view || window;
-                ev.detail = 1;
-                ev.screenX = target.screenX || 0;
-                ev.screenY = target.screenY || 0;
-                ev.clientX = target.clientX || 0;
-                ev.clientY = target.clientY || 0;
-                ev.ctrlKey = !!e.ctrlKey;
-                ev.altKey = !!e.altKey;
-                ev.shiftKey = !!e.shiftKey;
-                ev.metaKey = !!e.metaKey;
-                ev.button = 0;
-                ev.relatedTarget = null;
+                ev = document.createEvent('MouseEvents');
+                ev.initMouseEvent('click', true, true, e.view, 1,
+                    target.screenX, target.screenY, target.clientX, target.clientY,
+                    e.ctrlKey, e.altKey, e.shiftKey, e.metaKey,
+                    0, null);
+
                 ev._constructed = true;
                 target.dispatchEvent(ev);
             }
@@ -354,18 +344,15 @@
             this.options.tap = 'tap';
         }
 
-        // https://github.com/cubiq/iscroll/issues/1029
-        if (!this.options.useTransition && !this.options.useTransform) {
-            if (!(/relative|absolute/i).test(this.scrollerStyle.position)) {
-                this.scrollerStyle.position = "relative";
-            }
-        }
-
         if (this.options.shrinkScrollbars == 'scale') {
             this.options.useTransition = false;
         }
 
         this.options.invertWheelDirection = this.options.invertWheelDirection ? -1 : 1;
+
+        if (this.options.probeType == 3) {
+            this.options.useTransition = false;
+        }
 
 // INSERT POINT: NORMALIZATION
 
@@ -577,13 +564,19 @@
             this._translate(newX, newY);
 
             /* REPLACE START: _move */
-
             if (timestamp - this.startTime > 300) {
                 this.startTime = timestamp;
                 this.startX = this.x;
                 this.startY = this.y;
+
+                if (this.options.probeType == 1) {
+                    this._execEvent('scroll');
+                }
             }
 
+            if (this.options.probeType > 1) {
+                this._execEvent('scroll');
+            }
             /* REPLACE END: _move */
 
         },
@@ -867,15 +860,9 @@
         },
 
         _transitionTime: function (time) {
-            if (!this.options.useTransition) {
-                return;
-            }
             time = time || 0;
-            var durationProp = utils.style.transitionDuration;
-            if (!durationProp) {
-                return;
-            }
 
+            var durationProp = utils.style.transitionDuration;
             this.scrollerStyle[durationProp] = time + 'ms';
 
             if (!time && utils.isBadAndroid) {
@@ -1211,6 +1198,10 @@
             }
 
             this.scrollTo(newX, newY, 0);
+
+            if (this.options.probeType > 1) {
+                this._execEvent('scroll');
+            }
 
 // INSERT POINT: _wheel
         },
@@ -1617,11 +1608,16 @@
                 if (that.isAnimating) {
                     rAF(step);
                 }
+
+                if (that.options.probeType == 3) {
+                    that._execEvent('scroll');
+                }
             }
 
             this.isAnimating = true;
             step();
         },
+
         handleEvent: function (e) {
             switch (e.type) {
                 case 'touchstart':
@@ -1755,9 +1751,6 @@
         if (this.options.fade) {
             this.wrapperStyle[utils.style.transform] = this.scroller.translateZ;
             var durationProp = utils.style.transitionDuration;
-            if (!durationProp) {
-                return;
-            }
             this.wrapperStyle[durationProp] = utils.isBadAndroid ? '0.0001ms' : '0ms';
             // remove 0.0001ms
             var self = this;
@@ -1875,6 +1868,15 @@
 
             this._pos(newX, newY);
 
+
+            if (this.scroller.options.probeType == 1 && timestamp - this.startTime > 300) {
+                this.startTime = timestamp;
+                this.scroller._execEvent('scroll');
+            } else if (this.scroller.options.probeType > 1) {
+                this.scroller._execEvent('scroll');
+            }
+
+
 // INSERT POINT: indicator._move
 
             e.preventDefault();
@@ -1920,10 +1922,6 @@
         transitionTime: function (time) {
             time = time || 0;
             var durationProp = utils.style.transitionDuration;
-            if (!durationProp) {
-                return;
-            }
-
             this.indicatorStyle[durationProp] = time + 'ms';
 
             if (!time && utils.isBadAndroid) {
@@ -2148,21 +2146,33 @@
     ue.init = function () {
         var scrollWrappers = document.querySelectorAll('.ue-scroll-wrapper');
         scrollWrappers.forEach(function (e, i) {
-            var opts = e.dataset.scroll ? JSON.parse(e.dataset.scroll) : {
-                name: 'scroll-' + +new Date(),
+            // 默认配置
+            var defaults = {
+                tap: true,
                 click: true,
-                tap: true
+                probeType: 2
+            }, opts, k;
+            opts = e.dataset.scroll ? JSON.parse(e.dataset.scroll) : {
+                name: 'scroll-' + +new Date()
             };
+            for (k in defaults) {
+                opts[k] = defaults[k];
+            }
+            // 为了安全，不让别人看到配置信息
+            e.dataset.scroll = opts;
             ue.iscrollList[opts.name] = new IScroll(e, opts);
-            (function (scroll) {
+            (function (scroll, element) {
                 ['DOMContentLoaded', 'load', 'pageshow', 'resize', 'orientationchange', 'haschange', 'readystatechange'].forEach(function (e, i) {
                     window.addEventListener(e, function () {
                         setTimeout(function () {
                             scroll.refresh();
                         }, 300);
                     }, false);
+                    element.addEventListener('touchmove', function (e) {
+                        e.preventDefault();
+                    }, false);
                 });
-            })(ue.iscrollList[opts.name]);
+            })(ue.iscrollList[opts.name], e);
         });
     };
     ue.init();
