@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>scrollX</title>
+    <script type="text/javascript" src="../../src/ue-flex.js"></script>
+    <link rel="stylesheet" href="../../src/ue.css">
+    <link rel="stylesheet" href="../../plugins/toast/toast.css">
+    <link rel="stylesheet" href="../../plugins/botton/botton.css">
+    <style>
+        html, body, .ue-content {
+            background-color: #fff;
+        }
+
+        .ue-btn-group {
+            margin: 0 0 15px 0;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+<!-- 固定顶部 -->
+<header class="ue-bar ue-bar-nav ue-clearfix">
+    <a class="ue-icon ue-icon-back ue-pull-left ue-tap-class-eee" href="../index.html" style="padding: 10px 0;"></a>
+    <h4 class="ue-bar-title">scrollX</h4>
+</header>
+<!-- 固定顶部 -->
+<!-- 页面主体 -->
+<div class="ue-content">
+    <div class="ue-btn-group">
+        <div class="ue-scroll-wrapper ue-scroll-control"
+             data-scroll='{"name": "horScroll1", "scrollX": true, "scrollY": false}'>
+            <div class="ue-scroll ue-scroll-control-segmented">
+                <a class="ue-scroll-control-item" href="javascript:;">
+                    推荐
+                </a>
+                <a class="ue-scroll-control-item" href="javascript:;">
+                    热点
+                </a>
+                <a class="ue-scroll-control-item" href="javascript:;">
+                    北京
+                </a>
+                <a class="ue-scroll-control-item" href="javascript:;">
+                    社会
+                </a>
+                <a class="ue-scroll-control-item" href="javascript:;">
+                    娱乐
+                </a>
+                <a class="ue-scroll-control-item ue-active" href="javascript:;">
+                    科技
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="ue-btn-group">
+        <div class="ue-scroll-wrapper ue-scroll-control"
+             data-scroll='{"name": "horScroll2", "scrollX": true, "scrollY": false}'>
+            <div class="ue-scroll ue-scroll-control-segmented">
+                <a class="ue-scroll-control-item" href="javascript:;">
+                    推荐
+                </a>
+                <a class="ue-scroll-control-item" href="javascript:;">
+                    热点
+                </a>
+                <a class="ue-scroll-control-item ue-active" href="javascript:;">
+                    北京
+                </a>
+                <a class="ue-scroll-control-item" href="javascript:;">
+                    社会
+                </a>
+                <a class="ue-scroll-control-item" href="javascript:;">
+                    娱乐
+                </a>
+                <a class="ue-scroll-control-item" href="javascript:;">
+                    科技
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="ue-btn-group">
+        <div class="ue-content-padded">
+            <p>使用横向滚动必须添加class：</p>
+            <p>.ue-scroll-wrapper 额外添加 .ue-scroll-control</p>
+            <p>.ue-scroll 额外添加 .ue-scroll-control-segmented</p>
+            <p>data-scroll里的配置复制即可</p>
+        </div>
+    </div>
+</div>
+<!-- 页面主体 -->
+</body>
+<script type="text/javascript" src="../../src/ue.js"></script>
+</html>

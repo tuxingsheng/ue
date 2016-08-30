@@ -2148,6 +2148,7 @@
         scrollWrappers.forEach(function (e, i) {
             // 默认配置
             var defaults = {
+                click: true,
                 probeType: 2
             }, opts, k;
             opts = e.dataset.scroll ? JSON.parse(e.dataset.scroll) : {
@@ -2156,9 +2157,13 @@
             for (k in defaults) {
                 opts[k] = defaults[k];
             }
+            ue.iscrollList[opts.name] = new IScroll(e, opts);
             // 为了安全，不让别人看到配置信息
             e.dataset.scroll = opts;
-            ue.iscrollList[opts.name] = new IScroll(e, opts);
+            // 横向滚动特殊处理
+            if (opts.scrollX) {
+                ue.horizontal(opts.name);
+            }
             (function (scroll, element) {
                 ['DOMContentLoaded', 'load', 'pageshow', 'resize', 'orientationchange', 'haschange', 'readystatechange'].forEach(function (e, i) {
                     window.addEventListener(e, function () {
@@ -2173,6 +2178,33 @@
             })(ue.iscrollList[opts.name], e);
         });
     };
+
+    /*
+     * 处理所有横向滚动
+     * */
+    ue.horizontal = function (name) {
+        var uc = ue.iscrollList[name].wrapper;
+        var ucItems = uc.querySelectorAll('.ue-scroll-control-item');
+        var ucSegmented = uc.querySelector('.ue-scroll-control-segmented');
+        var ucItemsLength = ucItems.length * ucItems[0].offsetWidth;
+        var ucScrollRange = (ucItemsLength - uc.offsetWidth) / ucItems.length;
+
+        ucSegmented.style.width = ucItemsLength + 'px';
+        ucItems.forEach(function (e, i) {
+            //var _ucScrollRange = ucScrollRange;
+            if (e.classList.contains('ue-active')) {
+                ue.iscrollList[name].scrollTo(i == 0 ? 0 : -ucScrollRange * (i + 1), 0, 1000);
+            }
+            e.addEventListener('click', function () {
+                for (var x = 0; x < ucItems.length; x++) {
+                    ucItems[x].classList.remove('ue-active');
+                }
+                e.classList.add('ue-active');
+                ue.iscrollList[name].scrollTo(i == 0 ? 0 : -ucScrollRange * (i + 1), 0, 1000);
+            }, false);
+        });
+    };
+
     ue.init();
 
     if (typeof exports === 'object') module.exports = ue;
