@@ -3,6 +3,7 @@
  * @author：涂兴声
  * @createDate：2016-08-30
  * @param {String} el 作用区域
+ * @param {String} type picker类型（默认 'normal'，还支持 'date'）
  * @param {Boolean} showCover 是否显示遮罩
  * @param {Number} itemHeight item高度
  * @param {Object} items 数据列表
