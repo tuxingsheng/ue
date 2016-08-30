@@ -1,5 +1,17 @@
 /*
- *
+ * 原生js编写的picker，依赖iscroll
+ * @author：涂兴声
+ * @createDate：2016-08-30
+ * @param {Boolean} showCover 是否显示遮罩
+ * @param {Number} itemHeight item高度
+ * @param {Object} items 数据列表
+ * @param {Number} spaceNum 空白列表
+ * @param {Number} probeType iscroll.probeType配置
+ * @param {String} apart 分割线
+ * @param {String} show 显示的字段
+ * @param {String} export 输出的字段
+ * @param {Function} onScrollEnd 滚动结束的回调函数
+ * @param {Function} onConfirm 点击确认的回调函数
  * */
 (function (window, document) {
 
@@ -45,7 +57,7 @@
          * */
         this.defaults = {
             showCover: true,
-            itemWidth: 40,
+            itemHeight: 40,
             items: [],
             spaceNum: 2,
             probeType: 3,
@@ -119,7 +131,7 @@
         var pickerFlexs = document.querySelectorAll('.ue-picker-list-flex'), i = 0, self = this;
 
         var getActiveIndex = function (i, posY) {
-            var index = -Math.round(posY / self.defaults.itemWidth),
+            var index = -Math.round(posY / self.defaults.itemHeight),
                 values = self.defaults.items[i].values.length - 1;
 
             if (index > values) {
@@ -228,7 +240,7 @@
             this.pickerItems[i][this.defaults.spaceNum].classList.add('ue-picker-active');
             // 初始化pickerItems的高度
             for (var k = 0; k < this.pickerItems[i].length; k++) {
-                this.pickerItems[i][k].style.height = this.pickerItems[i][k].style.lineHeight = this.defaults.itemWidth + 'px';
+                this.pickerItems[i][k].style.height = this.pickerItems[i][k].style.lineHeight = this.defaults.itemHeight + 'px';
             }
             // 初始化indicator高度
             this._indicatorInit();
@@ -237,9 +249,9 @@
 
     Picker.prototype._indicatorInit = function () {
         this.pickerIndicator = this.pickerWrapper.querySelector('.ue-picker-indicator');
-        this.pickerIndicator.style.height = this.defaults.itemWidth + 'px';
+        this.pickerIndicator.style.height = this.defaults.itemHeight + 'px';
         // 初始化滚动区域高度
-        this.pickerList.style.height = (this.defaults.spaceNum * 2 + 1) * this.defaults.itemWidth + 'px';
+        this.pickerList.style.height = (this.defaults.spaceNum * 2 + 1) * this.defaults.itemHeight + 'px';
     };
 
     Picker.prototype._switchActiveClass = function (index, sIndex) {
