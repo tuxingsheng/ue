@@ -2,6 +2,7 @@
  * 原生js编写的picker，依赖iscroll
  * @author：涂兴声
  * @createDate：2016-08-30
+ * @param {String} el 作用区域
  * @param {Boolean} showCover 是否显示遮罩
  * @param {Number} itemHeight item高度
  * @param {Object} items 数据列表
@@ -18,6 +19,19 @@
     'use strict';
 
     var util = {
+        /*
+         * @name extend
+         * @type function
+         * @explain 复制对象
+         * */
+        extend: function (to, from) {
+            var keys = Object.keys(from);
+            var i = keys.length;
+            while (i--) {
+                to[keys[i]] = from[keys[i]];
+            }
+            return to;
+        },
         /*
          * @name each
          * @type function
@@ -39,6 +53,9 @@
                     }
                 }
             }
+        },
+        tf: function (i) {
+            return (i < 10 ? '0' : '') + i
         }
     };
 
@@ -48,19 +65,17 @@
             throw Error('Picker配置不能为空');
         }
 
-        this.pickerWrapper = document.querySelector('.ue-picker-wrapper');
-        this.pickerCover = document.querySelector('.ue-picker-cover');
-        this.pickerList = document.querySelector('.ue-picker-list');
-
         /*
          * 默认配置
          * */
         this.defaults = {
+            el: '.ue-picker',
+            type: 'normal',
             showCover: true,
             itemHeight: 40,
             items: [],
             spaceNum: 2,
-            probeType: 3,
+            probeType: 2,
             apart: '',
             show: 'text',
             export: 'value',
@@ -72,11 +87,13 @@
             }
         };
 
-        for (var o in options) {
-            if (typeof options[o] != 'undefined') {
-                this.defaults[o] = options[o];
-            }
-        }
+        this.defaults = util.extend(this.defaults, options);
+
+        this.picker = typeof this.defaults.el == 'string' ? document.querySelector(this.defaults.el) : this.defaults.el;
+        this.pickerWrapper = this.picker.querySelector('.ue-picker-wrapper');
+        this.pickerCover = this.picker.querySelector('.ue-picker-cover');
+        this.pickerList = this.picker.querySelector('.ue-picker-list');
+
         // 初始化HTML结构
         this._init();
     }
@@ -113,13 +130,27 @@
         this.pickerWrapper.style.transform = 'translate3d(0, 0, 0)';
     };
 
-    Picker.prototype._init = function () {
+    /*
+     * 数据刷新
+     * */
+    Picker.prototype.update = function (options) {
+        if (options) {
+            this.defaults = util.extend(this.defaults, options);
+        }
         // 创建DOM结构
         this._createFlex();
         // 初始化当前定位索引
         this._scrollIndexInit();
         // 初始化iscroll
         this._createPickerScroll();
+    };
+
+    /*
+     * 初始化
+     * */
+    Picker.prototype._init = function () {
+        // 更新数据
+        this.update();
         // 初始化绑定事件处理
         this._bindEvent();
         // 初始化的时候隐藏
@@ -128,7 +159,7 @@
 
     Picker.prototype._createPickerScroll = function () {
         this.pickerScroll = {};
-        var pickerFlexs = document.querySelectorAll('.ue-picker-list-flex'), i = 0, self = this;
+        var pickerFlexs = this.picker.querySelectorAll('.ue-picker-list-flex'), self = this;
 
         var getActiveIndex = function (i, posY) {
             var index = -Math.round(posY / self.defaults.itemHeight),
@@ -181,13 +212,19 @@
     };
 
     Picker.prototype._scrollData = function (x, y) {
-        return this.defaults.items[x].values[y][this.defaults.export];
+        var field = this.defaults.items[x].values[y][this.defaults.export];
+        // 特殊处理date类型
+        if (this.defaults.type == 'date' && typeof field == 'number') {
+            field = util.tf(field);
+        }
+        return field;
     };
 
     Picker.prototype._scrollEndData = function () {
         var result = '', length = this.defaults.items.length, i = 0;
         for (; i < length; i++) {
-            result += this._scrollData(i, this.scrollIndex[i]) + (i == length - 1 ? '' : this.defaults.apart);
+            var field = this.defaults.items[i].values[this.scrollIndex[i]][this.defaults.export];
+            result += this._scrollData(i, this.scrollIndex[i]) + (i == length - 1 || field == '' ? '' : this.defaults.apart);
         }
         return result;
     };
@@ -197,10 +234,10 @@
             e.preventDefault();
         }, false);
         // 添加取消和确定的监听
-        document.querySelector('.ue-picker-cancel').addEventListener('click', function () {
+        this.picker.querySelector('.ue-picker-cancel').addEventListener('click', function () {
             this.hide();
         }.bind(this), false);
-        document.querySelector('.ue-picker-confirm').addEventListener('click', function () {
+        this.picker.querySelector('.ue-picker-confirm').addEventListener('click', function () {
             this.hide();
             this.defaults.onConfirm(this._scrollEndData());
         }.bind(this), false);
@@ -222,6 +259,10 @@
         var dom = '', i = 0;
         for (; i < this.defaults.items[index]['values'].length; i++) {
             var item = this.defaults.items[index]['values'][i][this.defaults.show];
+            // 特殊处理date类型
+            if (this.defaults.type == 'date' && typeof item == 'number') {
+                item = util.tf(item);
+            }
             dom += '<li class="ue-picker-item">' + item + '</li>';
         }
         return dom;
@@ -230,6 +271,7 @@
     Picker.prototype._createFlex = function () {
         var i = 0;
         this.pickerItems = {};
+        this.pickerList.innerHTML = '';
         for (; i < this.defaults.items.length; i++) {
             var flex = document.createElement('div');
             flex.className = 'ue-picker-list-flex';

@@ -33,23 +33,34 @@
     <div class="ue-scroll">
         <div class="ue-content-padded">
             <div class="ue-btn-group">
-                <button type="button" class="ue-btn ue-btn-block" id="picker">open picker</button>
+                <button type="button" class="ue-btn ue-btn-block" id="picker1">open picker - 1</button>
             </div>
             <div class="ue-btn-group">
-                当前：
+                picker - 1当前：
                 <div id="list"></div>
             </div>
             <div class="ue-btn-group">
-                选择：
+                picker - 1选择：
                 <div id="text"></div>
+            </div>
+            <div class="ue-btn-group">
+                <button type="button" class="ue-btn ue-btn-block" id="picker2">open picker - 2</button>
+            </div>
+            <div class="ue-btn-group">
+                picker - 2当前：
+                <div id="list2"></div>
+            </div>
+            <div class="ue-btn-group">
+                picker - 2选择：
+                <div id="text2"></div>
             </div>
         </div>
     </div>
 </div>
 <!-- 页面主体 -->
 
-<!-- picker -->
-<div class="ue-picker">
+<!-- pickerName -->
+<div class="ue-picker" id="pickerName">
     <div class="ue-picker-cover"></div>
     <div class="ue-picker-wrapper">
         <div class="ue-picker-header ue-clearfix">
@@ -62,13 +73,30 @@
         </div>
     </div>
 </div>
-<!-- picker -->
+<!-- pickerName -->
+
+<!-- pickerDate -->
+<div class="ue-picker" id="pickerDate">
+    <div class="ue-picker-cover"></div>
+    <div class="ue-picker-wrapper">
+        <div class="ue-picker-header ue-clearfix">
+            <span class="ue-picker-cancel ue-pull-left">取消</span>
+            <span class="ue-picker-confirm ue-pull-right">确定</span>
+        </div>
+        <div class="ue-picker-content">
+            <div class="ue-picker-indicator"></div>
+            <div class="ue-picker-list"></div>
+        </div>
+    </div>
+</div>
+<!-- pickerDate -->
 
 </body>
 <script type="text/javascript" src="../../src/ue.js"></script>
 <script type="text/javascript" src="../../plugins/picker/picker.js"></script>
 <script>
-    var xs = new Picker({
+    var pickerName = new Picker({
+        el: '#pickerName',
         apart: '-',
         show: 'text',
         export: 'value',
@@ -101,8 +129,66 @@
             document.querySelector('#text').innerHTML = JSON.stringify(params);
         }
     });
-    document.querySelector('#picker').addEventListener('click', function () {
-        xs.show();
-    }, false);
+
+    document.querySelector('#picker1').addEventListener('click', function () {
+        pickerName.show();
+    });
+
+
+    /*
+     * 获取时间
+     * */
+    function initDate(start, end) {
+        if (start > end) {
+            throw Error('起始时间必须小于结束时间');
+        }
+        var arr = [];
+        for (var i = start; i <= end; i++) {
+            arr.push({
+                text: i,
+                value: i
+            });
+        }
+        return arr;
+    }
+
+    var pickerDate = new Picker({
+        el: '#pickerDate',
+        type: 'date',
+        apart: '-',
+        show: 'text',
+        export: 'value',
+        items: [
+            {
+                values: initDate(1970, 2005)
+            },
+            {
+                values: [
+                    {'text': '-', value: ''}
+                ]
+            },
+            {
+                values: initDate(1, 12)
+            },
+            {
+                values: [
+                    {'text': '-', value: ''}
+                ]
+            },
+            {
+                values: initDate(1, 30)
+            }
+        ],
+        onScrollEnd: function (params) {
+            document.querySelector('#list2').innerHTML = JSON.stringify(params);
+        },
+        onConfirm: function (params) {
+            document.querySelector('#text2').innerHTML = JSON.stringify(params);
+        }
+    });
+
+    document.querySelector('#picker2').addEventListener('click', function () {
+        pickerDate.show();
+    });
 </script>
 </html>
