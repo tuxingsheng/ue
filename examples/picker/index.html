@@ -48,6 +48,7 @@
 </div>
 <!-- 页面主体 -->
 
+<!-- picker -->
 <div class="ue-picker">
     <div class="ue-picker-cover"></div>
     <div class="ue-picker-wrapper">
@@ -57,22 +58,66 @@
         </div>
         <div class="ue-picker-content">
             <div class="ue-picker-indicator"></div>
-            <div class="ue-picker-list"></div>
+            <div class="ue-picker-list">
+                <!--<div class="ue-picker-list-flex">
+                    <ul>
+                        <li class="ue-picker-list-item" style="line-height: 40px; height: 40px;"></li>
+                        <li class="ue-picker-list-item" style="line-height: 40px; height: 40px;"></li>
+                        <li class="ue-picker-list-item ue-picker-active" style="line-height: 40px; height: 40px;">111111</li>
+                        <li class="ue-picker-list-item" style="line-height: 40px; height: 40px;">2222</li>
+                        <li class="ue-picker-list-item" style="line-height: 40px; height: 40px;">33333</li>
+                        <li class="ue-picker-list-item" style="line-height: 40px; height: 40px;">44444</li>
+                        <li class="ue-picker-list-item" style="line-height: 40px; height: 40px;"></li>
+                        <li class="ue-picker-list-item" style="line-height: 40px; height: 40px;"></li>
+                    </ul>
+                </div>
+                <div class="ue-picker-list-flex">
+                    <ul>
+                        <li class="ue-picker-list-item" style="line-height: 40px; height: 40px;"></li>
+                        <li class="ue-picker-list-item" style="line-height: 40px; height: 40px;"></li>
+                        <li class="ue-picker-list-item ue-picker-active" style="line-height: 40px; height: 40px;">111111</li>
+                        <li class="ue-picker-list-item" style="line-height: 40px; height: 40px;">2222</li>
+                        <li class="ue-picker-list-item" style="line-height: 40px; height: 40px;">33333</li>
+                        <li class="ue-picker-list-item" style="line-height: 40px; height: 40px;">44444</li>
+                        <li class="ue-picker-list-item" style="line-height: 40px; height: 40px;"></li>
+                        <li class="ue-picker-list-item" style="line-height: 40px; height: 40px;"></li>
+                    </ul>
+                </div>
+            </div>-->
         </div>
     </div>
 </div>
+<!-- picker -->
 
 </body>
 <script type="text/javascript" src="../../src/ue.js"></script>
 <script type="text/javascript" src="../../plugins/picker/picker.js"></script>
 <script>
     var xs = new Picker({
-        field: 'text',
+        apart: '-',
+        show: 'text',
+        export: 'value',
         items: [
-            {value: '1', text: '第一个'},
-            {value: '2', text: '第二个'},
-            {value: '3', text: '第三个'},
-            {value: '4', text: '第四个'}
+            {
+                values: [
+                    {'text': '赵', value: 'zhao'},
+                    {'text': '钱', value: 'qian'},
+                    {'text': '孙', value: 'sun'}
+                ]
+            },
+            {
+                values: [
+                    {'text': '宝钢', value: 'baogang'},
+                    {'text': '万江', value: 'wanjiang'},
+                    {'text': '九州', value: 'jiuzhou'}
+                ]
+            },
+            {
+                values: [
+                    {'text': '先生', value: 'sir'},
+                    {'text': '小姐', value: 'miss'}
+                ]
+            }
         ],
         onScrollEnd: function (params) {
             document.querySelector('#list').innerHTML = JSON.stringify(params);
@@ -81,7 +126,6 @@
             document.querySelector('#text').innerHTML = JSON.stringify(params);
         }
     });
-
     document.querySelector('#picker').addEventListener('click', function () {
         xs.show();
     }, false);

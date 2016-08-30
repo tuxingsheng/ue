@@ -23,7 +23,7 @@
     bottom: 0;
     background-color: #fff;
     z-index: 209;
-    opacity: 0;
+    opacity: 0; /* 0 */
 }
 
 .ue-picker-header {
@@ -67,9 +67,17 @@
     height: 200px;
     overflow: hidden;
     text-align: center;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
 }
 
-.ue-picker-list > li {
+.ue-picker-list-flex {
+    flex: 1;
+}
+
+.ue-picker-list-item {
     height: 40px;
     line-height: 40px;
     overflow: hidden;
