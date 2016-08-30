@@ -2205,6 +2205,10 @@
                 });
             })(ue.iscrollList[opts.name], e);
         });
+
+        document.addEventListener('touchmove', function (e) {
+            e.preventDefault();
+        }, false);
     };
 
     /*
