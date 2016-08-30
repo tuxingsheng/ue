@@ -67,14 +67,15 @@
     height: 200px;
     overflow: hidden;
     text-align: center;
-    display: flex;
     display: -webkit-flex;
+    display: flex;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
 }
 
 .ue-picker-list-flex {
+    -webkit-flex:1;
     flex: 1;
 }
 
