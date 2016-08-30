@@ -23,6 +23,7 @@
     bottom: 0;
     background-color: #fff;
     z-index: 209;
+    opacity: 0;
 }
 
 .ue-picker-header {
@@ -34,12 +35,8 @@
     font-size: 16px;
 }
 
-.ue-picker-cancel {
-    margin-left: 15px;
-}
-
-.ue-picker-confirm {
-    margin-right: 15px;
+.ue-picker-cancel, .ue-picker-confirm {
+   padding: 0 15px;
 }
 
 .ue-picker-content {

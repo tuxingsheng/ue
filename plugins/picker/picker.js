@@ -1,5 +1,3 @@
-
-
 /*
  *
  * */
@@ -55,6 +53,7 @@
      * */
     Picker.prototype.hide = function () {
         this.pickerCover.style.display = 'none';
+        this.pickerWrapper.style.opacity = 0;
         this.pickerWrapper.style.webkitTransform = 'translate3d(0, ' + this.pickerWrapper.clientHeight + 'px, 0)';
         this.pickerWrapper.style.transform = 'translate3d(0, ' + this.pickerWrapper.clientHeight + 'px, 0)';
         var self = this;
@@ -75,6 +74,7 @@
         if (this.defaults.showCover) {
             this.pickerCover.style.display = 'block';
         }
+        this.pickerWrapper.style.opacity = 1;
         this.pickerWrapper.style.webkitTransition = 'all ease-in-out 0.5s';
         this.pickerWrapper.style.transition = 'all ease-in-out 0.5s';
         this.pickerWrapper.style.webkitTransform = 'translate3d(0, 0, 0)';
