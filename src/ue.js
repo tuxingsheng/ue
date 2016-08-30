@@ -2139,13 +2139,41 @@
 (function (window, document, IScroll) {
     var ue = {};
     ue.iscrollList = {};
+    ue.util = {
+        hasClass: function (e, c) {
+            var re = new RegExp("(^|\\s)" + c + "(\\s|$)");
+            return re.test(e.className);
+        },
+        /*
+         * @name each
+         * @type function
+         * @explain each循环
+         * */
+        each: function (obj, fn) {
+            if (obj) {
+                var i = 0;
+                if (obj.length) {
+                    for (var n = obj.length; i < n; i++) {
+                        if (fn(i, obj[i]) === false)
+                            break
+                    }
+                } else {
+                    for (i in obj) {
+                        if (obj.hasOwnProperty(i) && fn(i, obj[i]) === false) {
+                            break
+                        }
+                    }
+                }
+            }
+        }
+    };
 
     /*
      * 初始化自动执行
      * */
     ue.init = function () {
         var scrollWrappers = document.querySelectorAll('.ue-scroll-wrapper');
-        scrollWrappers.forEach(function (e, i) {
+        ue.util.each(scrollWrappers, function (i, e) {
             // 默认配置
             var defaults = {
                 click: true,
@@ -2161,7 +2189,7 @@
             // 为了安全，不让别人看到配置信息
             e.dataset.scroll = opts;
             // 横向滚动特殊处理
-            if (opts.scrollX) {
+            if (opts.scrollX && !opts.scrollY) {
                 ue.horizontal(opts.name);
             }
             (function (scroll, element) {
@@ -2190,9 +2218,8 @@
         var ucScrollRange = (ucItemsLength - uc.offsetWidth) / ucItems.length;
 
         ucSegmented.style.width = ucItemsLength + 'px';
-        ucItems.forEach(function (e, i) {
-            //var _ucScrollRange = ucScrollRange;
-            if (e.classList.contains('ue-active')) {
+        ue.util.each(ucItems, function (i, e) {
+            if (ue.util.hasClass(e, 'ue-active')) {
                 ue.iscrollList[name].scrollTo(i == 0 ? 0 : -ucScrollRange * (i + 1), 0, 1000);
             }
             e.addEventListener('click', function () {
