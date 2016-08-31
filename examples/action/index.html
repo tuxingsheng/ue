@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>action</title>
+    <script type="text/javascript" src="../../src/ue-flex.js"></script>
+    <link rel="stylesheet" href="../../src/ue.css">
+    <link rel="stylesheet" href="../../plugins/botton/botton.css">
+    <link rel="stylesheet" href="../../plugins/action/action.css">
+    <style>
+        html, body, .ue-content {
+            background-color: #fff;
+        }
+
+        .ue-btn-group {
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+<!-- 固定顶部 -->
+<header class="ue-bar ue-bar-nav ue-clearfix">
+    <a class="ue-icon ue-icon-back ue-pull-left ue-tap-class-eee" href="../index.html"
+       style="padding: 10px 0;"></a>
+    <h4 class="ue-bar-title">action</h4>
+</header>
+<!-- 固定顶部 -->
+<!-- 页面主体 -->
+<div class="ue-content ue-scroll-wrapper" data-scroll='{"name": "appScroll"}'>
+    <div class="ue-scroll">
+        <div class="ue-content-padded">
+            <div class="ue-btn-group">
+                <button type="button" class="ue-btn ue-btn-block" id="actionBtn">open actionsheet</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 页面主体 -->
+
+<!-- action -->
+<div class="ue-action" id="action">
+    <div class="ue-action-cover"></div>
+    <div class="ue-action-wrapper">
+        <div class="ue-action-content">
+            <ul class="ue-action-table">
+                <li class="ue-action-table-cell"><a href="javascript:;">拍照或录像</a></li>
+                <li class="ue-action-table-cell"><a href="javascript:;">打开相册</a></li>
+                <li class="ue-action-table-cell"><a href="javascript:;">打开摄像头</a></li>
+            </ul>
+            <ul class="ue-action-table">
+                <li class="ue-action-table-cell"><a href="javascript:;">取消</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- action -->
+
+</body>
+<script type="text/javascript" src="../../src/ue.js"></script>
+<script type="text/javascript" src="../../plugins/action/action.js"></script>
+<script>
+    var action = new Action({
+        el: '#action'
+    });
+
+    document.querySelector('#actionBtn').addEventListener('tap', function () {
+        action.show();
+    });
+</script>
+</html>
