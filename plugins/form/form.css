@@ -1,0 +1,102 @@
+@charset "utf-8";
+
+/* ue-form start */
+
+.ue-form {
+    position: relative;
+    background-color: #fff;
+}
+
+.ue-input-row {
+    position: relative;
+    width: 100%;
+}
+
+.ue-input-row.ue-input-cell:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #e7e7e7;
+}
+
+.ue-input-row-label {
+    position: relative;
+    float: left;
+    width: 90px;
+    margin-right: -90px;
+    font-size: 16px;
+    padding: 11px 16px;
+}
+
+.ue-input-row-label > label {
+    padding: 11px 15px;
+    font-size: 16px;
+}
+
+.ue-input-row-cell {
+    float: right;
+    width: 100%;
+}
+
+.ue-input-row-cell-view {
+    margin-left: 90px;
+    overflow: hidden;
+}
+
+.ue-input-row-cell-view > input {
+    width: 100%;
+    padding: 11px 16px;
+    border: none;
+    font-size: 16px;
+}
+
+.ue-input-row-cell-view > select,
+.ue-input-row-cell-view > input[type=date] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+    border: none;
+    background: none;
+    border-radius: 0 0 0 0;
+    box-shadow: none;
+    display: block;
+    padding: 11px 16px;
+    margin: 0;
+    width: 100%;
+    height: auto;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.ue-input-row-cell-view > input[type=date] {
+    margin-top: -3px;
+    margin-bottom: -3px;
+}
+
+.ue-input-row-cell-view > textarea {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.ue-textarea-cell, .ue-input-row-cell-view > textarea {
+    line-height: 21px;
+    width: 98%;
+    height: auto;
+    padding: 10px 15px;
+    -webkit-user-select: text;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 3px;
+    outline: 0;
+    background-color: #fff;
+    -webkit-appearance: none;
+    resize: none;
+    font-size: 16px;
+}
+
+/* ue-form start */

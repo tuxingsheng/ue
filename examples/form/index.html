@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>form表单</title>
+    <script type="text/javascript" src="../../src/ue-flex.js"></script>
+    <link rel="stylesheet" href="../../src/ue.css">
+    <link rel="stylesheet" href="../../plugins/botton/botton.css">
+    <link rel="stylesheet" href="../../plugins/form/form.css">
+    <style>
+        html, body, .ue-content {
+            background-color: #efeff4;
+        }
+
+        .ue-btn-group {
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+<!-- 固定顶部 -->
+<header class="ue-bar ue-bar-nav ue-clearfix">
+    <a class="ue-icon ue-icon-back ue-pull-left ue-tap-class-eee" href="../index.html"
+       style="padding: 10px 0;"></a>
+    <h4 class="ue-bar-title">form表单</h4>
+</header>
+<!-- 固定顶部 -->
+<!-- 页面主体 -->
+<div class="ue-content ue-scroll-wrapper" data-scroll='{"name": "appScroll"}'>
+    <div class="ue-scroll">
+        <div class="ue-content-padded">
+            <form class="ue-form" onsubmit="return false;">
+                <!-- 用户名 -->
+                <div class="ue-input-row ue-clearfix ue-input-cell">
+                    <div class="ue-input-row-label">
+                        用户名
+                    </div>
+                    <div class="ue-input-row-cell">
+                        <div class="ue-input-row-cell-view">
+                            <input type="text" placeholder="请输入用户名">
+                        </div>
+                    </div>
+                </div>
+                <!-- 用户名 -->
+                <!-- 密码 -->
+                <div class="ue-input-row ue-clearfix ue-input-cell">
+                    <div class="ue-input-row-label">
+                        密码
+                    </div>
+                    <div class="ue-input-row-cell">
+                        <div class="ue-input-row-cell-view">
+                            <input type="password" placeholder="请输入密码">
+                        </div>
+                    </div>
+                </div>
+                <!-- 密码 -->
+                <!-- 邮箱 -->
+                <div class="ue-input-row ue-clearfix ue-input-cell">
+                    <div class="ue-input-row-label">
+                        邮箱
+                    </div>
+                    <div class="ue-input-row-cell">
+                        <div class="ue-input-row-cell-view">
+                            <input type="email" placeholder="请输入密码">
+                        </div>
+                    </div>
+                </div>
+                <!-- 邮箱 -->
+                <!-- 性别 -->
+                <div class="ue-input-row ue-clearfix ue-input-cell">
+                    <div class="ue-input-row-label">
+                        性别
+                    </div>
+                    <div class="ue-input-row-cell">
+                        <div class="ue-input-row-cell-view">
+                            <select>
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- 性别 -->
+                <!-- 生日 -->
+                <div class="ue-input-row ue-clearfix ue-input-cell">
+                    <div class="ue-input-row-label">
+                        生日
+                    </div>
+                    <div class="ue-input-row-cell">
+                        <div class="ue-input-row-cell-view">
+                            <input type="date" placeholder="请选择生日" value="2016-08-31">
+                        </div>
+                    </div>
+                </div>
+                <!-- 生日 -->
+                <!-- 文本域 -->
+                <div class="ue-input-row ue-clearfix">
+                    <div class="ue-input-row-label">
+                        文本域
+                    </div>
+                    <div class="ue-input-row-cell">
+                        <div class="ue-input-row-cell-view">
+                            <textarea rows="5" placeholder="多行文本框"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <!-- 文本域 -->
+                <div class="ue-btn-group" style="padding: 15px;">
+                    <button type="submit" class="ue-btn ue-btn-block ue-btn-danger">提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 页面主体 -->
+</body>
+<script type="text/javascript" src="../../src/ue.js"></script>
+</html>
