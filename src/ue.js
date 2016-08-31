@@ -2737,7 +2737,7 @@
             if (ue.util.hasClass(e, 'ue-active')) {
                 ue.iscrollList[name].scrollTo(i == 0 ? 0 : -ucScrollRange * (i + 1), 0, 1000);
             }
-            e.addEventListener('tap', function () {
+            e.addEventListener('click', function () {
                 for (var x = 0; x < ucItems.length; x++) {
                     ucItems[x].classList.remove('ue-active');
                 }
