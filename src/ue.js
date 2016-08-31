@@ -2708,7 +2708,7 @@
                     window.addEventListener(e, function () {
                         setTimeout(function () {
                             scroll.refresh();
-                        }, 300);
+                        }, 350);
                     }, false);
                     element.addEventListener('touchmove', function (e) {
                         e.preventDefault();
