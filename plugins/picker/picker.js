@@ -235,15 +235,15 @@
             e.preventDefault();
         }, false);
         // 添加取消和确定的监听
-        this.picker.querySelector('.ue-picker-cancel').addEventListener('click', function () {
+        this.picker.querySelector('.ue-picker-cancel').addEventListener('touchstart', function () {
             this.hide();
         }.bind(this), false);
-        this.picker.querySelector('.ue-picker-confirm').addEventListener('click', function () {
+        this.picker.querySelector('.ue-picker-confirm').addEventListener('touchstart', function () {
             this.hide();
             this.defaults.onConfirm(this._scrollEndData());
         }.bind(this), false);
         // 添加遮罩的事件监听
-        this.pickerCover.addEventListener('click', function () {
+        this.pickerCover.addEventListener('touchstart', function () {
             this.hide();
         }.bind(this), false);
     };
