@@ -2656,6 +2656,19 @@
             return re.test(e.className);
         },
         /*
+         * @name extend
+         * @type function
+         * @explain 复制对象
+         * */
+        extend: function (to, from) {
+            var keys = Object.keys(from);
+            var i = keys.length;
+            while (i--) {
+                to[keys[i]] = from[keys[i]];
+            }
+            return to;
+        },
+        /*
          * @name each
          * @type function
          * @explain each循环
@@ -2687,15 +2700,26 @@
         ue.util.each(scrollWrappers, function (i, e) {
             // 默认配置
             var defaults = {
+                // 开启click事件监听
                 click: true,
+                // 禁用鼠标事件
+                disableMouse: true,
+                // 禁用指针事件
+                disablePointer: true,
+                // 禁用滚轮事件
+                mouseWheel: false,
+                // 显示滚动条并淡入淡出
+                scrollbars: false,
+                fadeScrollbars: false,
+                // 调节在scroll事件触发中探针的活跃度或者频率
+                // 有效值有：1, 2, 3。数值越高表示更活跃的探测。
+                // 探针活跃度越高对CPU的影响就越大
                 probeType: 2
             }, opts, k;
             opts = e.dataset.scroll ? JSON.parse(e.dataset.scroll) : {
                 name: 'scroll-' + +new Date()
             };
-            for (k in defaults) {
-                opts[k] = defaults[k];
-            }
+            opts = ue.util.extend(opts, defaults);
             ue.iscrollList[opts.name] = new IScroll(e, opts);
             // 为了安全，不让别人看到配置信息
             e.dataset.scroll = opts;
