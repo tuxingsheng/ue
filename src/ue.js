@@ -2314,15 +2314,15 @@
  *          drag	    拖动中
  *          dragend	    拖动结束
  * */
-(function (window, document) {
+/*(function (window, document) {
     var at = {};
     at.gestures = {
         session: {},
         hooks: {}
     };
-    /*
+    /!*
      * gesture配置
-     * */
+     * *!/
     at.gestureConfig = {
         tap: true,
         doubletap: true,
@@ -2333,19 +2333,19 @@
         drag: true,
         pinch: true
     };
-    /*
+    /!*
      * slice
-     * */
+     * *!/
     at.slice = [].slice;
-    /*
+    /!*
      * 时间戳
-     * */
+     * *!/
     at.now = function () {
         return +new Date();
     };
-    /*
+    /!*
      * 遍历方法
-     * */
+     * *!/
     at.each = function (obj, fn) {
         if (obj) {
             var i = 0;
@@ -2363,9 +2363,9 @@
             }
         }
     };
-    /*
+    /!*
      * trigger event
-     * */
+     * *!/
     at.trigger = function (element, eventType, eventData) {
         element.dispatchEvent(new CustomEvent(eventType, {
             detail: eventData,
@@ -2373,15 +2373,15 @@
             cancelable: true
         }));
     };
-    /*
+    /!*
      * 注册gesture(手势)
-     * */
+     * *!/
     at.addGesture = function (gesture) {
         return at.addAction('gestures', gesture);
     };
-    /*
+    /!*
      * 执行手势的hooks方法
-     * */
+     * *!/
     at.doAction = function (type, callback) {
         if (typeof callback == 'function') {
             // 指定了callback
@@ -2733,12 +2733,12 @@
         return at;
     });
     else window.at = at;
-})(window, document);
+})(window, document);*/
 
 /*
  * 注册tap事件
  * */
-(function (at, name) {
+/*(function (at, name) {
     var lastTarget;
     var lastTapTime;
     var handle = function (event, touch) {
@@ -2778,4 +2778,4 @@
         }
     });
 
-})(at, 'tap');
+})(at, 'tap');*/
