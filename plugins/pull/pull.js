@@ -148,7 +148,7 @@
         this.pullDown.style.marginTop = '-44px';
         this.pullDownIcon.className = 'ue-pull-down-icon ue-icon ue-icon-pulldown';
         this.pullDownIcon.style.webkitTransform = 'rotate(0deg)';
-        this.pullDownIcon.style.top = '0px';
+        //this.pullDownIcon.style.top = '0px';
         this.pullDownLabel.innerText = this.defaults.pullInitName;
     };
 
@@ -160,7 +160,7 @@
         this.pullDown.style.marginTop = '-44px';
         this.pullDownIcon.className = 'ue-pull-down-icon ue-icon ue-icon-pulldown';
         this.pullDownIcon.style.webkitTransform = 'rotate(180deg)';
-        this.pullDownIcon.style.top = '3px';
+        //this.pullDownIcon.style.top = '3px';
         this.pullDownLabel.innerText = this.defaults.pullStartName;
     };
 
@@ -172,7 +172,7 @@
         this.pullDown.style.marginTop = '0px';
         this.pullDownIcon.className = 'ue-pull-down-icon ue-spinner';
         this.pullDownIcon.style.webkitTransform = 'rotate(0deg)';
-        this.pullDownIcon.style.top = '3px';
+        //this.pullDownIcon.style.top = '3px';
         this.pullDownLabel.innerText = this.defaults.pullLoadName;
     };
 
