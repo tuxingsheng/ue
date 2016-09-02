@@ -1880,8 +1880,7 @@
                 this.scroller._execEvent('scroll');
             }
 
-
-// INSERT POINT: indicator._move
+            // INSERT POINT: indicator._move
 
             e.preventDefault();
             e.stopPropagation();
@@ -2779,3 +2778,4 @@
     });
 
 })(at, 'tap');
+

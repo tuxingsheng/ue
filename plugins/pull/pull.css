@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+/* ue-pull start */
+
+.ue-pull-down {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    padding: 5px 10px;
+    color: #777;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    margin-top: -44px;
+
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+}
+
+.ue-pull-down-icon {
+    position: relative;
+    top: 0;
+}
+
+.ue-pull-down-icon:before {
+    font-size: 20px;
+}
+
+.ue-pull-down-label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* ue-pull start */
+

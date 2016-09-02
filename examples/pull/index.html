@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>pull</title>
+    <script type="text/javascript" src="../../src/ue-flex.min.js"></script>
+    <link rel="stylesheet" href="../../src/ue.css">
+    <link rel="stylesheet" href="../../plugins/table/table.css">
+    <link rel="stylesheet" href="../../plugins/pull/pull.css">
+    <style>
+        html, body, .ue-content {
+            background-color: #fff;
+        }
+
+        .ue-btn-group {
+            margin: 0 0 15px 0;
+            height: 40px;
+        }
+
+        .ue-table-view {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 16px;
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+<!-- 固定顶部 -->
+<header class="ue-bar ue-bar-nav ue-clearfix">
+    <a class="ue-icon ue-icon-back ue-pull-left ue-tap-class-eee" href="../index.html" style="padding: 10px 0;"></a>
+    <h4 class="ue-bar-title">pull</h4>
+</header>
+<!-- 固定顶部 -->
+<!-- 页面主体 -->
+<div class="ue-content ue-scroll-wrapper" data-scroll='{"name": "appScroll", "useTransition": true, "topOffset": 44}'>
+    <div class="ue-scroll">
+        <ul class="ue-row">
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
+        </ul>
+    </div>
+</div>
+<!-- 页面主体 -->
+</body>
+<script type="text/javascript" src="../../src/ue.min.js"></script>
+<script type="text/javascript" src="../../plugins/pull/pull.js"></script>
+<script>
+    var pullDown = new Pull({
+        scroll: 'appScroll',
+        pullDown: true,
+        autoInit: true,
+        pullDownSuccess: function () {
+            setTimeout(function () {
+                ajaxLoad();
+                pullDown.pull.refresh();
+            }, 3000)
+        }
+    });
+
+    var generatedCount = 0;
+
+    function ajaxLoad() {
+        var el = document.querySelector('.ue-row'), i = 0;
+        for (; i < 5; i++) {
+            var li = document.createElement('li');
+            li.className = 'ue-col-xs-12 ue-table-view';
+            li.innerText = 'Pull ' + (++generatedCount);
+            el.insertBefore(li, el.childNodes[0]);
+        }
+    }
+</script>
+</html>
