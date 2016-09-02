@@ -87,9 +87,9 @@
 
 .ue-textarea-cell, .ue-input-row-cell-view > textarea {
     line-height: 21px;
-    width: 98%;
+    width: 100%;
     height: auto;
-    /*padding: 11px 16px;*/
+    padding: 10px 15px;
     -webkit-user-select: text;
     border: 1px solid rgba(0, 0, 0, .2);
     border-radius: 3px;
