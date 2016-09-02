@@ -20,10 +20,11 @@
     transition: all .5s;
 }
 
-/*.ue-pull-down-icon {
-    position: relative;
-    top: 0;
-}*/
+.ue-pull-down-icon {
+    /*position: relative;*/
+    /*top: 0;*/
+    margin-right: 10px;
+}
 
 .ue-pull-down-icon:before {
     font-size: 20px;
