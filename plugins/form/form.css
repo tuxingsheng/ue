@@ -10,6 +10,7 @@
 .ue-input-row {
     position: relative;
     width: 100%;
+    padding: 10px 15px;
 }
 
 .ue-input-row.ue-input-cell:before {
@@ -29,11 +30,11 @@
     width: 90px;
     margin-right: -90px;
     font-size: 16px;
-    padding: 11px 16px;
+    /*padding: 11px 16px;*/
 }
 
 .ue-input-row-label > label {
-    padding: 11px 15px;
+    /*padding: 11px 16px;*/
     font-size: 16px;
 }
 
@@ -49,7 +50,7 @@
 
 .ue-input-row-cell-view > input {
     width: 100%;
-    padding: 11px 16px;
+    /*padding: 11px 16px;*/
     border: none;
     font-size: 16px;
 }
@@ -66,7 +67,7 @@
     border-radius: 0 0 0 0;
     box-shadow: none;
     display: block;
-    padding: 11px 16px;
+    /*padding: 11px 16px;*/
     margin: 0;
     width: 100%;
     height: auto;
@@ -88,7 +89,7 @@
     line-height: 21px;
     width: 98%;
     height: auto;
-    padding: 10px 15px;
+    /*padding: 11px 16px;*/
     -webkit-user-select: text;
     border: 1px solid rgba(0, 0, 0, .2);
     border-radius: 3px;

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>switch</title>
+    <script type="text/javascript" src="../../src/ue-flex.min.js"></script>
+    <link rel="stylesheet" href="../../src/ue.min.css">
+    <link rel="stylesheet" href="../../plugins/form/form.css">
+    <link rel="stylesheet" href="../../plugins/botton/botton.css">
+    <link rel="stylesheet" href="../../plugins/switch/switch.css">
+    <style>
+        html, body, .ue-content {
+            background-color: #fff;
+        }
+
+        .ue-btn-group {
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+<!-- 固定顶部 -->
+<header class="ue-bar ue-bar-nav ue-clearfix">
+    <a class="ue-icon ue-icon-bars ue-pull-left ue-tap-class-eee" href="javascript:window.location.reload();"
+       style="padding: 10px 10px 10px 0;"></a>
+    <h4 class="ue-bar-title">switch</h4>
+</header>
+<!-- 固定顶部 -->
+<!-- 页面主体 -->
+<div class="ue-content ue-scroll-wrapper" data-scroll='{"name": "appScroll"}'>
+    <div class="ue-scroll">
+        <div class="ue-content-padded">
+            <form class="ue-form" onsubmit="return false;">
+                <div class="ue-input-row ue-clearfix ue-input-cell">
+                    <div class="ue-input-row-label">
+                        状态：true
+                    </div>
+                    <div class="ue-input-row-cell">
+                        <div class="ue-switch ue-switch-success ue-active">
+                            <div class="ue-switch-handle"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ue-input-row ue-clearfix ue-input-cell">
+                    <div class="ue-input-row-label">
+                        状态：false
+                    </div>
+                    <div class="ue-input-row-cell">
+                        <div class="ue-switch ue-switch-success ue-switch-mini">
+                            <div class="ue-switch-handle"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ue-input-row ue-clearfix ue-input-cell">
+                    <div class="ue-input-row-label">
+                        状态：true
+                    </div>
+                    <div class="ue-input-row-cell">
+                        <div class="ue-switch ue-switch-primary ue-active">
+                            <div class="ue-switch-handle"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ue-input-row ue-clearfix ue-input-cell">
+                    <div class="ue-input-row-label">
+                        状态：false
+                    </div>
+                    <div class="ue-input-row-cell">
+                        <div class="ue-switch ue-switch-primary ue-switch-mini">
+                            <div class="ue-switch-handle"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ue-input-row ue-clearfix ue-input-cell">
+                    <div class="ue-input-row-label">
+                        状态：false
+                    </div>
+                    <div class="ue-input-row-cell">
+                        <div class="ue-switch ue-switch-danger">
+                            <div class="ue-switch-handle"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ue-input-row ue-clearfix ue-input-cell">
+                    <div class="ue-input-row-label">
+                        状态：true
+                    </div>
+                    <div class="ue-input-row-cell">
+                        <div class="ue-switch ue-switch-royal ue-active">
+                            <div class="ue-switch-handle"></div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 页面主体 -->
+</body>
+<script type="text/javascript" src="../../src/ue.min.js"></script>
+<script type="text/javascript" src="../../plugins/switch/switch.js"></script>
+<script>
+    var aSwitch = document.querySelectorAll('.ue-switch'), i = 0;
+
+    for (; i < aSwitch.length; i++) {
+        aSwitch[i].addEventListener('touchstart', function () {
+            this.parentNode.parentNode.querySelector('.ue-input-row-label').innerHTML = '状态：' + (this.classList.contains('ue-active') ? 'true' : 'false');
+        }, false);
+    }
+</script>
+</html>
