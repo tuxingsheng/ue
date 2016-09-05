@@ -62,6 +62,7 @@
 
     Pull.prototype.scrollerEnd = function () {
         this._pullDownState(3);
+        this.pull.refresh();
     };
 
     /*
@@ -101,9 +102,11 @@
         var self = this, count = 0, timer = null;
 
         this.pull.on('refresh', function () {
-            count = 0;
-            clearInterval(timer);
-            self._pullDownState(0);
+            if (self.pullDownState != 3) {
+                count = 0;
+                clearInterval(timer);
+                self._pullDownState(0);
+            }
         });
 
         this.pull.on('scroll', function () {
