@@ -49,6 +49,12 @@
     -ms-transform: rotate(0deg);
     -o-transform: rotate(0deg);
     transform: rotate(0deg);
+
+    -webkit-transition: -webkit-transform 0.3s ease-in;
+    -moz-transition: -moz-transform 0.3s ease-in;
+    -ms-transition: -ms-transform 0.3s ease-in;
+    -o-transition: -o-transform 0.3s ease-in;
+    transition: transform 0.3s ease-in;
 }
 
 .ue-pull-up-icon.ue-rotate-180,
