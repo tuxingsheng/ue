@@ -79,6 +79,10 @@
         pullDownSuccess: function () {
             setTimeout(function () {
                 ajaxLoad();
+                if (generatedCount >= 10) {
+                    pullDown.scrollerEnd();
+                    return false;
+                }
                 pullDown.pull.refresh();
             }, 1500)
         }

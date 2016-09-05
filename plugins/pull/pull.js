@@ -32,6 +32,7 @@
             pullInitName: '下拉可以刷新',
             pullStartName: '释放立即刷新',
             pullLoadName: '正在刷新...',
+            pullEndName: '没有更多数据了',
             pullDownSuccess: function () {
 
             }
@@ -43,7 +44,7 @@
         // 0 --- 可以刷新
         // 1 --- 释放可刷新
         // 2 --- 正在刷新
-        // 3 --- 刷新结束
+        // 3 --- 没有更多数据了
         this.pullDownState = 0;
 
         if (!ue.iscrollList[this.defaults.scroll]) {
@@ -57,6 +58,10 @@
     Pull.prototype._init = function () {
         this._queryElement();
         this._bindEvent();
+    };
+
+    Pull.prototype.scrollerEnd = function () {
+        this._pullDownState(3);
     };
 
     /*
@@ -103,7 +108,7 @@
 
         this.pull.on('scroll', function () {
             if (self.defaults.pullDown) {
-                if (self.pullDownState == 2) {
+                if (self.pullDownState == 2 || self.pullDownState == 3) {
                     return false;
                 }
                 self._pullDownState(this.y > self.defaults.limit ? 1 : 0);
@@ -141,7 +146,7 @@
             case 0:
                 this.pullDownState = 0;
                 this.pull.scroller.style.top = '0px';
-                this.pullDownIcon.classList.remove('ue-rotate-180');
+                this.pullDownIcon.style.display = 'inline-block';
                 this.pullDownLabel.innerText = this.defaults.pullInitName;
                 this.pullDownIcon.className = 'ue-pull-down-icon ue-icon ue-icon-pulldown';
                 break;
@@ -149,17 +154,24 @@
             case 1:
                 this.pullDownState = 1;
                 this.pull.scroller.style.top = '0px';
-                this.pullDownIcon.classList.add('ue-rotate-180');
+                this.pullDownIcon.style.display = 'inline-block';
                 this.pullDownLabel.innerText = this.defaults.pullStartName;
-                this.pullDownIcon.className = 'ue-pull-down-icon ue-icon ue-icon-pulldown';
+                this.pullDownIcon.className = 'ue-pull-down-icon ue-icon ue-icon-pulldown ue-rotate-180';
                 break;
             // 加载中状态
             case 2:
                 this.pullDownState = 2;
                 this.pull.scroller.style.top = '44px';
-                this.pullDownIcon.classList.remove('ue-rotate-180');
+                this.pullDownIcon.style.display = 'inline-block';
                 this.pullDownLabel.innerText = this.defaults.pullLoadName;
                 this.pullDownIcon.className = 'ue-pull-down-icon ue-spinner';
+                break;
+            // 没有更多数据了
+            case 3:
+                this.pullDownState = 3;
+                this.pull.scroller.style.top = '0px';
+                this.pullDownIcon.style.display = 'none';
+                this.pullDownLabel.innerText = this.defaults.pullEndName;
                 break;
         }
     };
