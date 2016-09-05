@@ -3,10 +3,17 @@
 /* ue-pull start */
 
 .ue-scroll-wrapper {
-    background-color: #efeff4!important;
+    background-color: #efeff4 !important;
 }
 
-.ue-scroll, .ue-pull-down {
+.ue-scroll {
+    z-index: 9;
+    top: 0;
+    background-color: #fff;
+}
+
+.ue-scroll,
+.ue-pull-down {
     -webkit-transition: all .5s;
     -moz-transition: all .5s;
     -ms-transition: all .5s;
@@ -14,17 +21,10 @@
     transition: all .5s;
 }
 
-.ue-scroll {
-    top: 0;
-    background-color: #fff;
-}
-
-.ue-pull-down {
+.ue-pull-up, .ue-pull-down {
     position: absolute;
     left: 0;
-    top: 0;
     z-index: 1;
-
     width: 100%;
     height: 40px;
     line-height: 40px;
@@ -33,6 +33,15 @@
     text-align: center;
 }
 
+.ue-pull-down {
+    top: 0;
+}
+
+.ue-pull-up {
+    bottom: 0;
+}
+
+.ue-pull-up-icon,
 .ue-pull-down-icon {
     margin-right: 10px;
     -webkit-transform: rotate(0deg);
@@ -42,6 +51,7 @@
     transform: rotate(0deg);
 }
 
+.ue-pull-up-icon.ue-rotate-180,
 .ue-pull-down-icon.ue-rotate-180 {
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
@@ -50,10 +60,12 @@
     transform: rotate(180deg);
 }
 
+.ue-pull-up-icon:before,
 .ue-pull-down-icon:before {
     font-size: 20px;
 }
 
+.ue-pull-up-label,
 .ue-pull-down-label {
     font-weight: bold;
     font-size: 14px;
