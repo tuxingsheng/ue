@@ -285,7 +285,8 @@
 
     function IScroll(el, options) {
         this.wrapper = typeof el == 'string' ? document.querySelector(el) : el;
-        this.scroller = this.wrapper.children[0];
+        //this.scroller = this.wrapper.children[0];
+        this.scroller = typeof options.scroller == 'string' ?  this.wrapper.querySelector(options.scroller) : options.scroller;
         this.scrollerStyle = this.scroller.style;		// cache style for better performance
 
         this.options = {
@@ -296,7 +297,7 @@
 
             snapThreshold: 0.334,
 
-// INSERT POINT: OPTIONS
+            // INSERT POINT: OPTIONS
             disablePointer: !utils.hasPointer,
             disableTouch: utils.hasPointer || !utils.hasTouch,
             disableMouse: utils.hasPointer || utils.hasTouch,
@@ -2218,6 +2219,7 @@
         ue.util.each(scrollWrappers, function (i, e) {
             // 默认配置
             var defaults = {
+                scroller: '.ue-scroll',
                 // 开启click事件监听
                 click: true,
                 // 禁用鼠标事件
