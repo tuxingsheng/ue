@@ -29,12 +29,12 @@
             maxTime: 10,
             pullDown: false,
             //autoInit: false,
-            pullDownSuccess: function () {
-                
-            },
             pullInitName: '下拉可以刷新',
             pullStartName: '释放立即刷新',
-            pullLoadName: '正在刷新...'
+            pullLoadName: '正在刷新...',
+            pullDownSuccess: function () {
+
+            }
         };
 
         this.defaults = util.extend(this.defaults, options);
@@ -95,43 +95,36 @@
     Pull.prototype._bindEvent = function () {
         var self = this, count = 0, timer = null;
 
-        this.pull.on('scroll', function () {
-
-            if (self.pullDownState == 2) {
-                return false;
-            }
-            if (self.defaults.pullDown) {
-                if (this.y > self.defaults.limit) {
-                    self._pullDownStart();
-                } else {
-                    self._pullDownInit();
-                }
-                //优化
-                //self[this.y > self.defaults.limit ? '_pullDownStart' : '_pullDownInit']();
-            }
-        });
-
         this.pull.on('refresh', function () {
             count = 0;
             clearInterval(timer);
-            self._pullDownInit();
+            self._pullDownState(0);
+        });
+
+        this.pull.on('scroll', function () {
+            if (self.defaults.pullDown) {
+                if (self.pullDownState == 2) {
+                    return false;
+                }
+                self._pullDownState(this.y > self.defaults.limit ? 1 : 0);
+            }
         });
 
         this.pull.on('scrollEnd', function () {
-            //console.log(this.y);
+            // scrollEnd
         });
 
         this.pull.scroller.addEventListener('touchend', function () {
             if (self.defaults.pullDown) {
                 if (self.pullDownState == 1) {
-                    self._pullDownLoad();
+                    self._pullDownState(2);
                     self.defaults.pullDownSuccess();
                     timer = setInterval(function () {
                         count++;
                         if (count >= self.defaults.maxTime) {
                             count = 0;
                             clearInterval(timer);
-                            self._pullDownInit();
+                            self._pullDownState(0);
                         }
                     }, 1000);
                 }
@@ -140,39 +133,35 @@
     };
 
     /*
-     * pullDown初始化状态
+     * pullDown状态设置
      * */
-    Pull.prototype._pullDownInit = function () {
-        this.pullDownState = 0;
-        this.pullDown.style.top = '0';
-        this.pull.scroller.style.top = '0px';
-        this.pullDownIcon.className = 'ue-pull-down-icon ue-icon ue-icon-pulldown';
-        this.pullDownIcon.style.webkitTransform = 'rotate(0deg)';
-        this.pullDownLabel.innerText = this.defaults.pullInitName;
-    };
-
-    /*
-     * pullDown允许加载的状态
-     * */
-    Pull.prototype._pullDownStart = function () {
-        this.pullDownState = 1;
-        this.pullDown.style.top = '0';
-        this.pull.scroller.style.top = '0px';
-        this.pullDownIcon.className = 'ue-pull-down-icon ue-icon ue-icon-pulldown';
-        this.pullDownIcon.style.webkitTransform = 'rotate(180deg)';
-        this.pullDownLabel.innerText = this.defaults.pullStartName;
-    };
-
-    /*
-     * pullDown加载中状态
-     * */
-    Pull.prototype._pullDownLoad = function () {
-        this.pullDownState = 2;
-        this.pullDown.style.top = '0px';
-        this.pull.scroller.style.top = '44px';
-        this.pullDownIcon.className = 'ue-pull-down-icon ue-spinner';
-        this.pullDownIcon.style.webkitTransform = 'rotate(0deg)';
-        this.pullDownLabel.innerText = this.defaults.pullLoadName;
+    Pull.prototype._pullDownState = function (index) {
+        switch (index) {
+            // 初始化状态
+            case 0:
+                this.pullDownState = 0;
+                this.pull.scroller.style.top = '0px';
+                this.pullDownIcon.classList.remove('ue-rotate-180');
+                this.pullDownLabel.innerText = this.defaults.pullInitName;
+                this.pullDownIcon.className = 'ue-pull-down-icon ue-icon ue-icon-pulldown';
+                break;
+            // 允许加载的状态
+            case 1:
+                this.pullDownState = 1;
+                this.pull.scroller.style.top = '0px';
+                this.pullDownIcon.classList.add('ue-rotate-180');
+                this.pullDownLabel.innerText = this.defaults.pullStartName;
+                this.pullDownIcon.className = 'ue-pull-down-icon ue-icon ue-icon-pulldown';
+                break;
+            // 加载中状态
+            case 2:
+                this.pullDownState = 2;
+                this.pull.scroller.style.top = '44px';
+                this.pullDownIcon.classList.remove('ue-rotate-180');
+                this.pullDownLabel.innerText = this.defaults.pullLoadName;
+                this.pullDownIcon.className = 'ue-pull-down-icon ue-spinner';
+                break;
+        }
     };
 
 

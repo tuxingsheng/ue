@@ -15,13 +15,14 @@
 }
 
 .ue-scroll {
+    top: 0;
     background-color: #fff;
 }
 
 .ue-pull-down {
     position: absolute;
     left: 0;
-    top: -44px;
+    top: 0;
     z-index: 1;
 
     width: 100%;
@@ -34,6 +35,19 @@
 
 .ue-pull-down-icon {
     margin-right: 10px;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+
+.ue-pull-down-icon.ue-rotate-180 {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
 }
 
 .ue-pull-down-icon:before {
