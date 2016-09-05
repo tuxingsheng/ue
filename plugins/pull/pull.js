@@ -1,5 +1,22 @@
 'use strict';
 
+/*
+ * 原生js插件，pull.js，适用于手机端
+ * @author          涂兴声
+ * @createDate      2016/09/05
+ * 名称	            内容
+ * scroll           某个scroll
+ * limit            触发上限
+ * pullUp           是否触发pullUp
+ * pullDown         是否触发pullDown
+ * pullInitDownName pullDown显示内容
+ * pullInitUpName   pullUp显示内容
+ * pullStartName    pull释放内容
+ * pullLoadingName  pull加载内容
+ * pullClearName    pull结束加载
+ * pullUpSuccess    pullUp加载成功的回调
+ * pullDownSuccess  pullDown加载成功的回调
+ * */
 (function (window, document, ue) {
 
 
@@ -26,7 +43,6 @@
         this.defaults = {
             scroll: 'appScroll',
             limit: 44,
-            maxTime: 10,
             pullUp: false,
             pullDown: false,
             pullInitDownName: '下拉可以刷新',
@@ -81,6 +97,13 @@
      * */
     Pull.prototype.scrollerDownEnd = function () {
         this._pullDownState(3);
+        this.pull.refresh();
+    };
+
+    /*
+     * pull refresh
+     * */
+    Pull.prototype.refresh = function () {
         this.pull.refresh();
     };
 
@@ -144,6 +167,10 @@
     Pull.prototype._bindEvent = function () {
         var self = this, count = 0, timer = null;
 
+        this.pull.on('scrollEnd', function () {
+            // scrollEnd...
+        });
+
         this.pull.on('refresh', function () {
             count = 0;
             clearInterval(timer);
@@ -184,10 +211,6 @@
                 }
             }
         }, false);
-
-        this.pull.on('scrollEnd', function () {
-            // scrollEnd...
-        });
     };
 
     /*
@@ -214,7 +237,7 @@
             // 加载中状态
             case 2:
                 this.pullDownState = 2;
-                this.pull.scroller.style.top = '44px';
+                this.pull.scroller.style.top = this.defaults.limit + 'px';
                 this.pullDownIcon.style.display = 'inline-block';
                 this.pullDownLabel.innerText = this.defaults.pullLoadingName;
                 this.pullDownIcon.className = 'ue-pull-down-icon ue-spinner';
@@ -253,7 +276,7 @@
             // 加载中状态
             case 2:
                 this.pullUpState = 2;
-                this.pull.scroller.style.top = '-44px';
+                this.pull.scroller.style.top = -this.defaults.limit + 'px';
                 this.pullUpIcon.style.display = 'inline-block';
                 this.pullUpLabel.innerText = this.defaults.pullLoadingName;
                 this.pullUpIcon.className = 'ue-pull-up-icon ue-spinner';

@@ -81,9 +81,8 @@
                 ajaxUpLoad();
                 if (upCount >= 25) {
                     pullDown.scrollerUpEnd();
-                    return false;
                 } else {
-                    pullDown.pull.refresh();
+                    pullDown.refresh();
                 }
             }, 1500)
         },
@@ -93,7 +92,7 @@
                 if (downCount >= 10) {
                     pullDown.scrollerDownEnd();
                 } else {
-                    pullDown.pull.refresh();
+                    pullDown.refresh();
                 }
             }, 1500)
         }
