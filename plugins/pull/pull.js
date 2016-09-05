@@ -156,7 +156,7 @@
         });
 
         this.pull.on('scroll', function () {
-            if (this.y > self.defaults.limit && self.defaults.pullDown) {
+            if (this.y > 0 && self.defaults.pullDown) {
                 if (self.pullDownState == 2 || self.pullDownState == 3) {
                     return false;
                 }
