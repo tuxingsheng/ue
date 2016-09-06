@@ -99,9 +99,9 @@ html, body {
 .ue-calendar-grid.ue-active {
     background-color: #03C7AD;
     color: #fff;
-    -webkit-border-radius: 50%;
+    /*-webkit-border-radius: 50%;
     -moz-border-radius: 50%;
-    border-radius: 50%;
+    border-radius: 50%;*/
 }
 
 .ue-calendar-headline {
