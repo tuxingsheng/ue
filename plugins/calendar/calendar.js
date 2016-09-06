@@ -105,6 +105,25 @@
         '<div class="ue-calendar-nav">' + '{{ nav }}' + '</div>' +
         '<div class="ue-calendar-wrap ue-clearfix">' + '{{ time }}' + '</div>';
 
+    var festival = {
+        '01-01': '元旦',
+        '01-15': '元宵节',
+        '03-08': '妇女节',
+        '03-12': '植树节',
+        '05-01': '劳动节',
+        '05-05': '端午节',
+        '05-04': '青年节',
+        '06-01': '儿童节',
+        '07-01': '建党节',
+        '07-07': '乞巧节',
+        '08-01': '建军节',
+        '08-15': '中秋节',
+        '09-09': '重阳节',
+        '09-10': '教师节',
+        '10-01': '国庆节',
+        '12-08': '腊八节'
+    };
+
 
     var Calendar = function (options) {
 
@@ -249,7 +268,9 @@
             // 本月日期显示
             for (; k < currentDate; k++) {
                 var curDate = util.formatDate(this.date.getFullYear + '-' + this.date.getMonth + '-' + (k + 1), this.defaults.dateFormat);
-                dom.push('<div class="ue-calendar-grid" data-current="' + (curDate.date) + '" data-index="' + (k) + '"><span>' + (k + 1) + '</span><span>入住</span></div>');
+                var cls = festival[this.date.getMonth + '-' + (util.tf(k + 1))] ? 'ue-calendar-grid ue-mini' : 'ue-calendar-grid';
+                var font = festival[this.date.getMonth + '-' + (util.tf(k + 1))] ? festival[this.date.getMonth + '-' + (util.tf(k + 1))] : '';
+                dom.push('<div class="' + (cls) + '" data-current="' + (curDate.date) + '" data-index="' + (k) + '"><span>' + (k + 1) + '</span><span>' + (font) + '</span></div>');
             }
 
             // 下一个月的日期显示
