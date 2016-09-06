@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>calendar</title>
+    <script type="text/javascript" src="../../src/ue-flex.min.js"></script>
+    <link rel="stylesheet" href="../../src/ue.min.css">
+    <link rel="stylesheet" href="../../plugins/calendar/calendar.css">
+    <style>
+        html, body, .ue-content {
+            background-color: #fff;
+        }
+
+        .ue-btn-group {
+            margin: 15px 0;
+        }
+
+        input {
+            width: 100%;
+            padding: 11px 15px;
+        }
+    </style>
+</head>
+<body>
+<!-- 固定顶部 -->
+<header class="ue-bar ue-bar-nav ue-clearfix">
+    <a class="ue-icon ue-icon-back ue-pull-left ue-tap-class-eee" href="../index.html"
+       style="padding: 10px 0;"></a>
+    <h4 class="ue-bar-title">calendar</h4>
+</header>
+<!-- 固定顶部 -->
+<!-- 页面主体 -->
+<div class="ue-content ue-scroll-wrapper" data-scroll='{"name": "appScroll"}'>
+    <div class="ue-scroll">
+        <!--<div class="ue-content-padded">
+            <div class="ue-btn-group">
+                <input type="text" placeholder="请选择日期" id="input">
+            </div>
+        </div>-->
+        <div id="calendar">
+            <!--<div class="ue-calendar-title ue-clearfix">
+                <a href="javascript:;" class="ue-calendar-left ue-icon ue-icon-back"></a>
+                <a href="javascript:;" class="ue-calendar-right ue-icon ue-icon-forward"></a>
+                <h2 class="ue-calendar-headline">2016年9月</h2>
+            </div>-->
+            <!--<div class="ue-calendar-nav">
+                <div class="ue-calendar-nav-name">一</div>
+                <div class="ue-calendar-nav-name">二</div>
+                <div class="ue-calendar-nav-name">三</div>
+                <div class="ue-calendar-nav-name">四</div>
+                <div class="ue-calendar-nav-name">五</div>
+                <div class="ue-calendar-nav-name ue-calendar-cl-orange">六</div>
+                <div class="ue-calendar-nav-name ue-calendar-cl-orange">日</div>
+            </div>-->
+            <!--<div class="ue-calendar-wrap ue-clearfix">
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid ue-mini ue-active"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
+            </div>-->
+        </div>
+    </div>
+</div>
+<!-- 页面主体 -->
+
+
+</body>
+<script type="text/javascript" src="../../src/ue.min.js"></script>
+<script type="text/javascript" src="../../plugins/calendar/calendar.js"></script>
+<script>
+    var calendar = new Calendar({
+        el: '#calendar',
+        onChange: function () {
+
+        }
+    });
+</script>
+</html>
