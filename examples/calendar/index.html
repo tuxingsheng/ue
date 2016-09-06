@@ -111,8 +111,10 @@
 <script>
     var calendar = new Calendar({
         el: '#calendar',
-        onChange: function () {
-
+        //dateFormat: 'yyyy/MM/dd',
+        onChange: function (ele, val) {
+            alert('你选的日期：' + val);
+            console.log('你选的日期：' + val);
         }
     });
 </script>

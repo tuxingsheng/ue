@@ -46,10 +46,14 @@
         getMonth: function (date) {
             return date.getMonth();
         },
+        // 添加0
         tf: function (i) {
+            i = typeof i == 'string' ? parseInt(i) : i;
             return (i < 10 ? '0' : '') + i
         },
+        // 时间格式化
         formatDate: function (time, format) {
+            time = typeof time == 'string' ? new Date(time) : time;
             var getFullYear = util.tf(time.getFullYear()),
                 getMonth = util.tf(time.getMonth() + 1),
                 getDate = util.tf(time.getDate()),
@@ -86,6 +90,12 @@
                     }
                 })
             }
+        },
+        // 事件名
+        event: {
+            START: 'ontouchstart' in window ? 'touchstart' : 'mousedown',
+            MOVE: 'ontouchstart' in window ? 'touchmove' : 'mousemove',
+            END: 'ontouchstart' in window ? 'touchend' : 'mouseup'
         }
     };
 
@@ -139,15 +149,8 @@
             this.calendar = typeof this.defaults.el ? document.querySelector(this.defaults.el) : this.defaults.el;
             this.calendar.className = 'ue-calendar';
 
-
             this._updateDate();
             this._render();
-        },
-        _initRender: function () {
-            this.calendar.innerHTML = template
-                .replace('{{ date }}', this._createCalendarTitle())
-                .replace('{{ nav }}', this._createCalendarNav())
-                .replace('{{ time }}', this._createCalendarWrap());
         },
         _render: function () {
             this.calendar.innerHTML = template
@@ -158,12 +161,25 @@
         _bindEvent: function () {
             this.calendarLeft = this.calendar.querySelector('.ue-calendar-left');
             this.calendarRight = this.calendar.querySelector('.ue-calendar-right');
-            this.calendarLeft.addEventListener('touchstart', function () {
+            this.grids = this.calendar.querySelectorAll('[data-current]');
+            var self = this;
+
+            util.each(this.grids, function (i, e) {
+                e.addEventListener(util.event.START, function () {
+                    for (var i = 0; i < self.grids.length; i++) {
+                        self.grids[i].classList.remove('ue-active');
+                    }
+                    this.classList.add('ue-active');
+                    self.defaults.onChange.call(self, e, e.dataset.current);
+                });
+            });
+            this.calendarLeft.addEventListener(util.event.START, function () {
                 this._updateCalendar('-');
             }.bind(this));
-            this.calendarRight.addEventListener('touchstart', function () {
+            this.calendarRight.addEventListener(util.event.START, function () {
                 this._updateCalendar('+');
             }.bind(this));
+
         },
         _updateCalendar: function (n) {
             switch (n) {
@@ -193,7 +209,7 @@
             return '' +
                 '<a href="javascript:;" class="ue-calendar-left ue-icon ue-icon-back"></a>' +
                 '<a href="javascript:;" class="ue-calendar-right ue-icon ue-icon-forward"></a>' +
-                '<h2 class="ue-calendar-headline">' + (this.date.getFullYear) + '年' + (this.date.getMonth) + '月</h2>';
+                '<h2 class="ue-calendar-headline">' + (this.date.getFullYear) + '年' + (util.tf(this.date.getMonth)) + '月</h2>';
         },
         /*
          * 创建calendar-nav
@@ -232,8 +248,8 @@
 
             // 本月日期显示
             for (; k < currentDate; k++) {
-                var curDate = this.date.getFullYear + '-' + this.date.getMonth + '-' + (k + 1);
-                dom.push('<div class="ue-calendar-grid" data-current="' + (curDate) + '"><span>' + (k + 1) + '</span><span>入住</span></div>');
+                var curDate = util.formatDate(this.date.getFullYear + '-' + this.date.getMonth + '-' + (k + 1), this.defaults.dateFormat);
+                dom.push('<div class="ue-calendar-grid" data-current="' + (curDate.date) + '" data-index="' + (k) + '"><span>' + (k + 1) + '</span><span>入住</span></div>');
             }
 
             // 下一个月的日期显示
