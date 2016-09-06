@@ -268,8 +268,8 @@
             // 本月日期显示
             for (; k < currentDate; k++) {
                 var curDate = util.formatDate(this.date.getFullYear + '-' + this.date.getMonth + '-' + (k + 1), this.defaults.dateFormat);
-                var cls = festival[this.date.getMonth + '-' + (util.tf(k + 1))] ? 'ue-calendar-grid ue-mini' : 'ue-calendar-grid';
-                var font = festival[this.date.getMonth + '-' + (util.tf(k + 1))] ? festival[this.date.getMonth + '-' + (util.tf(k + 1))] : '';
+                var cls = festival[curDate.getMonth + '-' + curDate.getDate] ? 'ue-calendar-grid ue-mini' : 'ue-calendar-grid';
+                var font = festival[curDate.getMonth + '-' + curDate.getDate] ? festival[curDate.getMonth + '-' + curDate.getDate] : '';
                 dom.push('<div class="' + (cls) + '" data-current="' + (curDate.date) + '" data-index="' + (k) + '"><span>' + (k + 1) + '</span><span>' + (font) + '</span></div>');
             }
 
