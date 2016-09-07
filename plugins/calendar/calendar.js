@@ -154,6 +154,8 @@
             value: null,
             minDate: null,
             maxDate: null,
+            isPopup: false,
+            inputReadOnly: true,
             selectNav: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
             dateFormat: 'yyyy-MM-dd',
             onChange: function () {
@@ -172,10 +174,32 @@
          * 初始化
          * */
         _init: function () {
-            this.calendar = typeof this.defaults.el ? document.querySelector(this.defaults.el) : this.defaults.el;
+            this.calendar = typeof this.defaults.el == 'string' ? document.querySelector(this.defaults.el) : this.defaults.el;
             this.calendar.className = 'ue-calendar';
 
+            // isPopup = true
+            if (this.defaults.isPopup) {
+                this.calendar.classList.add('ue-calendar-popup');
+                this.input = typeof this.defaults.input == 'string' ? document.querySelector(this.defaults.input) : this.defaults.input;
+                this.input[this.defaults.inputReadOnly ? 'setAttribute' : 'removeAttribute']('readonly', true);
+                this.defaults.value = (this.input.value == '' ? this.defaults.value : this.input.value);
+            }
+
             this._selectorElement();
+            this.defaults.isPopup && this._close();
+        },
+        _open: function () {
+            this.calendar.style.opacity = 1;
+            this.calendar.style.webkitTransition = 'all ease-in-out 0.5s';
+            this.calendar.style.transition = 'all ease-in-out 0.5s';
+            this.calendar.style.webkitTransform = 'translate3d(0, 0, 0)';
+            this.calendar.style.transform = 'translate3d(0, 0, 0)';
+        },
+        _close: function () {
+            var ch = this.calendar.offsetHeight;
+            this.calendar.style.opacity = 0;
+            this.calendar.style.webkitTransform = 'translate3d(0, ' + ch + 'px, 0)';
+            this.calendar.style.transform = 'translate3d(0, ' + ch + 'px, 0)';
         },
         /*
          * 更新时间
@@ -214,7 +238,12 @@
                     }
                     this.classList.add('ue-active');
                     self.defaults.onChange.call(self, e, e.dataset.current);
-                });
+                    if (self.defaults.isPopup) {
+                        self._close();
+                        self._triggerShade();
+                        self.input.value = e.dataset.current;
+                    }
+                }, false);
             });
 
             this.calendar.addEventListener(util.event.MOVE, function (e) {
@@ -227,6 +256,12 @@
                 this._nextDate();
             }.bind(this), false);
 
+            if (this.defaults.isPopup) {
+                this.input.addEventListener(util.event.START, function () {
+                    this._open();
+                    this._triggerShade();
+                }.bind(this), false);
+            }
         },
         _nextDate: function () {
             this._getNextMonthDate(++this.date.getMonth);
@@ -310,6 +345,23 @@
             }
 
             return dom.join('');
+        },
+        /*
+         * 创建calendar-shade
+         * */
+        _triggerShade: function () {
+            this.ueShade = document.querySelector('.ue-calendar-shade');
+            if (this.ueShade) {
+                document.body.removeChild(this.ueShade);
+            } else {
+                this.ueShade = document.createElement('div');
+                this.ueShade.className = 'ue-calendar-shade';
+                this.ueShade.addEventListener(util.event.START, function () {
+                    this._close();
+                    this._triggerShade();
+                }.bind(this), false);
+                document.body.appendChild(this.ueShade);
+            }
         }
     };
 

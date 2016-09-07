@@ -36,28 +36,42 @@
 <!-- 页面主体 -->
 <div class="ue-content ue-scroll-wrapper" data-scroll='{"name": "appScroll"}'>
     <div class="ue-scroll">
-        <!--<div class="ue-content-padded">
+        <div class="ue-content-padded">
             <div class="ue-btn-group">
-                <input type="text" placeholder="请选择日期" id="input">
+                <p>支持内联和弹窗两种模式</p>
             </div>
-        </div>-->
-        <div id="calendar"></div>
+            <div class="ue-btn-group">
+                <input type="text" placeholder="请选择日期" id="input" value="2016-05-09">
+            </div>
+        </div>
+        <div id="calendarInline"></div>
     </div>
 </div>
 <!-- 页面主体 -->
 
+<div id="calendarPopup"></div>
 
 </body>
 <script type="text/javascript" src="../../src/ue.js"></script>
 <script type="text/javascript" src="../../plugins/toast/toast.js"></script>
 <script type="text/javascript" src="../../plugins/calendar/calendar.js"></script>
 <script>
-    var calendar = new Calendar({
-        el: '#calendar',
+    var calendarInline = new Calendar({
+        el: '#calendarInline',
         //minDate: '2016-5-5',
         //maxDate: '2016-10-5',
         //value: '2016-08-05',
         //dateFormat: 'yyyy/MM/dd',
+        onChange: function (e, v) {
+            console.log('你选的日期：' + v);
+            toast('你选的日期：' + v);
+        }
+    });
+
+    var calendarPopup = new Calendar({
+        el: '#calendarPopup',
+        input: '#input',
+        isPopup: true,
         onChange: function (e, v) {
             console.log('你选的日期：' + v);
             toast('你选的日期：' + v);
