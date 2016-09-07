@@ -2140,30 +2140,6 @@
 })(window, document, Math);
 
 /*
- * fixed CustomEvent
- * */
-(function (window) {
-    if (typeof window.CustomEvent === 'undefined') {
-        function CustomEvent(event, params) {
-            params = params || {
-                    bubbles: false,
-                    cancelable: false,
-                    detail: undefined
-                };
-            var evt = document.createEvent('Events'), bubbles = true, n;
-            for (n in params) {
-                (n === 'bubbles') ? (bubbles = !!params[n]) : (evt[n] = params[n]);
-            }
-            evt.initEvent(event, bubbles, true);
-            return evt;
-        }
-
-        CustomEvent.prototype = window.Event.prototype;
-        window.CustomEvent = CustomEvent;
-    }
-})(window);
-
-/*
  * ue.js
  * */
 (function (window, document, IScroll) {
@@ -2299,6 +2275,30 @@
     });
     else window.ue = ue;
 })(window, document, IScroll);
+
+/*
+ * fixed CustomEvent
+ * */
+(function (window) {
+    if (typeof window.CustomEvent === 'undefined') {
+        function CustomEvent(event, params) {
+            params = params || {
+                    bubbles: false,
+                    cancelable: false,
+                    detail: undefined
+                };
+            var evt = document.createEvent('Events'), bubbles = true, n;
+            for (n in params) {
+                (n === 'bubbles') ? (bubbles = !!params[n]) : (evt[n] = params[n]);
+            }
+            evt.initEvent(event, bubbles, true);
+            return evt;
+        }
+
+        CustomEvent.prototype = window.Event.prototype;
+        window.CustomEvent = CustomEvent;
+    }
+})(window);
 
 /*
  *分类	    参数	        描述
