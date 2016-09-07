@@ -12,12 +12,16 @@ html, body {
     color: #000;
 }
 
+.ue-calendar-cl-03C7AD {
+    color: #03C7AD !important;
+}
+
 .ue-calendar-cl-orange {
-    color: #FF902D;
+    color: #FF902D !important;
 }
 
 .ue-calendar-cl-cfcfcf {
-    color: #cfcfcf;
+    color: #cfcfcf !important;
 }
 
 .ue-calendar-title {
@@ -64,6 +68,7 @@ html, body {
     float: left;
     margin: 5px 0;
     padding-bottom: 5px;
+    color: #000;
 }
 
 .ue-calendar-grid:after {
@@ -97,8 +102,8 @@ html, body {
 }
 
 .ue-calendar-grid.ue-active {
-    background-color: #03C7AD;
-    color: #fff;
+    background-color: #03C7AD !important;
+    color: #fff !important;
     /*-webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;*/

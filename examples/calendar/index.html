@@ -40,80 +40,24 @@
                 <input type="text" placeholder="请选择日期" id="input">
             </div>
         </div>-->
-        <div id="calendar">
-            <!--<div class="ue-calendar-title ue-clearfix">
-                <a href="javascript:;" class="ue-calendar-left ue-icon ue-icon-back"></a>
-                <a href="javascript:;" class="ue-calendar-right ue-icon ue-icon-forward"></a>
-                <h2 class="ue-calendar-headline">2016年9月</h2>
-            </div>-->
-            <!--<div class="ue-calendar-nav">
-                <div class="ue-calendar-nav-name">一</div>
-                <div class="ue-calendar-nav-name">二</div>
-                <div class="ue-calendar-nav-name">三</div>
-                <div class="ue-calendar-nav-name">四</div>
-                <div class="ue-calendar-nav-name">五</div>
-                <div class="ue-calendar-nav-name ue-calendar-cl-orange">六</div>
-                <div class="ue-calendar-nav-name ue-calendar-cl-orange">日</div>
-            </div>-->
-            <!--<div class="ue-calendar-wrap ue-clearfix">
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid ue-mini ue-active"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-                <div class="ue-calendar-grid"><span>6</span><span>入住</span></div>
-            </div>-->
-        </div>
+        <div id="calendar"></div>
     </div>
 </div>
 <!-- 页面主体 -->
 
 
 </body>
-<script type="text/javascript" src="../../src/ue.min.js"></script>
+<script type="text/javascript" src="../../src/ue.js"></script>
 <script type="text/javascript" src="../../plugins/calendar/calendar.js"></script>
 <script>
     var calendar = new Calendar({
         el: '#calendar',
+        //minDate: '2016-5-5',
+        //maxDate: '2016-10-5',
+        //value: '2016-08-05',
         //dateFormat: 'yyyy/MM/dd',
         onChange: function (ele, val) {
-            alert('你选的日期：' + val);
+            //alert('你选的日期：' + val);
             console.log('你选的日期：' + val);
         }
     });

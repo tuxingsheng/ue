@@ -2467,6 +2467,16 @@
         return results;
     };
 
+    var hasParent = function(node, parent) {
+        while (node) {
+            if (node == parent) {
+                return true;
+            }
+            node = node.parentNode;
+        }
+        return false;
+    };
+
     var getTouches = function (event, touch) {
         var allTouches = convertTouches(at.slice.call(event.touches || [event]));
 

@@ -2,6 +2,8 @@
 
 (function (window, document) {
 
+    var isTouchable = 'ontouchstart' in window;
+
     var util = {
         /*
          * @name extend
@@ -38,36 +40,32 @@
                 }
             }
         },
-        // 获取年
-        getFullYear: function (date) {
-            return date.getFullYear();
-        },
-        // 获取月
-        getMonth: function (date) {
-            return date.getMonth();
-        },
-        // 添加0
+        /*
+         * @name tf
+         * @type function
+         * @explain 添加0
+         * */
         tf: function (i) {
-            i = typeof i == 'string' ? parseInt(i) : i;
+            i = (typeof i == 'string' ? parseInt(i) : i);
             return (i < 10 ? '0' : '') + i
         },
-        // 时间格式化
+        /*
+         * @name formatDate
+         * @type function
+         * @explain 时间格式化
+         * */
         formatDate: function (time, format) {
-            time = typeof time == 'string' ? new Date(time) : time;
+            time = (typeof time == 'string' ? new Date(time) : time);
             var getFullYear = util.tf(time.getFullYear()),
                 getMonth = util.tf(time.getMonth() + 1),
                 getDate = util.tf(time.getDate()),
-                getHours = util.tf(time.getHours()),
-                getMinutes = util.tf(time.getMinutes()),
-                getSeconds = util.tf(time.getSeconds());
+                getDay = util.tf(time.getDay());
             return {
-                getFullYear: getFullYear,
-                getMonth: getMonth,
-                getDate: getDate,
-                getHours: getHours,
-                getMinutes: getMinutes,
-                getSeconds: getSeconds,
-                date: format.replace(/yyyy|MM|dd|HH|mm|ss/g, function (a) {
+                getFullYear: parseInt(getFullYear),
+                getMonth: parseInt(getMonth),
+                getDate: parseInt(getDate),
+                getDay: parseInt(getDay),
+                date: format.replace(/yyyy|MM|dd/g, function (a) {
                     switch (a) {
                         case 'yyyy':
                             return getFullYear;
@@ -78,27 +76,45 @@
                         case 'dd':
                             return getDate;
                             break;
-                        case 'HH':
-                            return getHours;
-                            break;
-                        case 'mm':
-                            return getMinutes;
-                            break;
-                        case 'ss':
-                            return getSeconds;
-                            break;
                     }
                 })
             }
         },
-        // 事件名
+        /*
+         * @name getNextMonthDate
+         * @type function
+         * @explain 获取下个月的年月
+         * */
+        getNextMonthDate: function (year, month) {
+            if (month > 12) {
+                year = year + Math.floor(( month - 1 ) / 12);
+                month = (month % 12 == 0 ? 12 : month % 12);
+            }
+            return {
+                year: year,
+                month: month
+            }
+        },
+        getStringDate: function (date) {
+            if (typeof date == 'string') {
+                var a = date.split('-'), i = 0;
+                for (; i < a.length; i++) {
+                    a[i] = util.tf(a[i])
+                }
+                return a.join('');
+            }
+        },
+        /*
+         * @name event
+         * @type object
+         * @explain 事件名
+         * */
         event: {
-            START: 'ontouchstart' in window ? 'touchstart' : 'mousedown',
-            MOVE: 'ontouchstart' in window ? 'touchmove' : 'mousemove',
-            END: 'ontouchstart' in window ? 'touchend' : 'mouseup'
+            START: isTouchable ? 'touchstart' : 'mousedown',
+            MOVE: isTouchable ? 'touchmove' : 'mousemove',
+            END: isTouchable ? 'touchend' : 'mouseup'
         }
     };
-
 
     var template = '' +
         '<div class="ue-calendar-title ue-clearfix">' + '{{ date }}' + '</div>' +
@@ -106,22 +122,24 @@
         '<div class="ue-calendar-wrap ue-clearfix">' + '{{ time }}' + '</div>';
 
     var festival = {
-        '01-01': '元旦',
-        '01-15': '元宵节',
-        '03-08': '妇女节',
-        '03-12': '植树节',
-        '05-01': '劳动节',
-        '05-05': '端午节',
-        '05-04': '青年节',
-        '06-01': '儿童节',
-        '07-01': '建党节',
-        '07-07': '乞巧节',
-        '08-01': '建军节',
-        '08-15': '中秋节',
-        '09-09': '重阳节',
-        '09-10': '教师节',
-        '10-01': '国庆节',
-        '12-08': '腊八节'
+        '1-1': '元旦',
+        '1-15': '元宵节',
+        '3-8': '妇女节',
+        '3-12': '植树节',
+        '4-5': '清明节',
+        '5-1': '劳动节',
+        '5-4': '青年节',
+        '5-5': '端午节',
+        '6-1': '儿童节',
+        '7-1': '建党节',
+        '8-1': '建军节',
+        '8-15': '中秋节',
+        '9-9': '重阳节',
+        '9-10': '教师节',
+        '9-15': '中秋节',
+        '10-1': '国庆节',
+        '11-25': '感恩节',
+        '12-8': '腊八节'
     };
 
 
@@ -133,11 +151,10 @@
          * 默认配置
          * */
         this.defaults = {
-            count: 1,
+            value: null,
             minDate: null,
             maxDate: null,
-            selectDate: new Date(),
-            nav: ['一', '二', '三', '四', '五', '六', '日'],
+            selectNav: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
             dateFormat: 'yyyy-MM-dd',
             onChange: function () {
 
@@ -155,20 +172,26 @@
          * 初始化
          * */
         _init: function () {
+            this.calendar = typeof this.defaults.el ? document.querySelector(this.defaults.el) : this.defaults.el;
+            this.calendar.className = 'ue-calendar';
+
             this._selectorElement();
-            this._bindEvent();
         },
-        _updateDate: function (value) {
+        /*
+         * 更新时间
+         * */
+        _updateDate: function (value, status) {
+            if (status) {
+                return util.formatDate(value ? new Date(value) : new Date(), this.defaults.dateFormat);
+            }
             this.date = util.formatDate(value ? new Date(value) : new Date(), this.defaults.dateFormat);
         },
         /*
          * 查询element元素
          * */
         _selectorElement: function () {
-            this.calendar = typeof this.defaults.el ? document.querySelector(this.defaults.el) : this.defaults.el;
-            this.calendar.className = 'ue-calendar';
-
-            this._updateDate();
+            this._updateDate(this.defaults.value);
+            this.localDate = this.date;
             this._render();
         },
         _render: function () {
@@ -176,12 +199,13 @@
                 .replace('{{ date }}', this._createCalendarTitle())
                 .replace('{{ nav }}', this._createCalendarNav())
                 .replace('{{ time }}', this._createCalendarWrap());
+            this._bindEvent();
         },
         _bindEvent: function () {
+            var self = this;
+            this.grids = this.calendar.querySelectorAll('[data-current]');
             this.calendarLeft = this.calendar.querySelector('.ue-calendar-left');
             this.calendarRight = this.calendar.querySelector('.ue-calendar-right');
-            this.grids = this.calendar.querySelectorAll('[data-current]');
-            var self = this;
 
             util.each(this.grids, function (i, e) {
                 e.addEventListener(util.event.START, function () {
@@ -192,35 +216,31 @@
                     self.defaults.onChange.call(self, e, e.dataset.current);
                 });
             });
+
+            this.calendar.addEventListener(util.event.MOVE, function (e) {
+                e.preventDefault();
+            }, false);
             this.calendarLeft.addEventListener(util.event.START, function () {
-                this._updateCalendar('-');
-            }.bind(this));
+                this._prevDate();
+            }.bind(this), false);
             this.calendarRight.addEventListener(util.event.START, function () {
-                this._updateCalendar('+');
-            }.bind(this));
+                this._nextDate();
+            }.bind(this), false);
 
         },
-        _updateCalendar: function (n) {
-            switch (n) {
-                case '+':
-                    this.date.getMonth = parseInt(this.date.getMonth) + 1;
-                    break;
-                case '-':
-                    this.date.getMonth = parseInt(this.date.getMonth) - 1;
-                    break;
-            }
-            if (this.date.getMonth > 12) {
-                this.date.getFullYear = parseInt(this.date.getFullYear) + 1;
-                this.date.getMonth = 1;
-            }
-            if (this.date.getMonth < 1) {
-                this.date.getFullYear = parseInt(this.date.getFullYear) - 1;
-                this.date.getMonth = 12;
+        _nextDate: function () {
+            this._getNextMonthDate(++this.date.getMonth);
+        },
+        _prevDate: function () {
+            this._getNextMonthDate(--this.date.getMonth);
+        },
+        _getNextMonthDate: function (month) {
+            if (month > 12 || month < 1) {
+                this.date.getFullYear = this.date.getFullYear + Math.floor(( this.date.getMonth - 1 ) / 12);
+                this.date.getMonth = (this.date.getMonth % 12 == 0 ? 12 : this.date.getMonth % 12);
             }
             this._render();
-            this._bindEvent();
         },
-
         /*
          * 创建calendar-title
          * */
@@ -235,7 +255,7 @@
          * */
         _createCalendarNav: function () {
             var dom = '';
-            this.defaults.nav.forEach(function (e, i) {
+            this.defaults.selectNav.forEach(function (e, i) {
                 dom += '<div class="ue-calendar-nav-name' + (i > 4 ? ' ue-calendar-cl-orange' : ' ') + '">' + e + '</div>';
             });
             return dom;
@@ -262,20 +282,31 @@
                 before.push(x);
             }
             for (; i >= 0; i--) {
-                dom.push('<div class="ue-calendar-grid ue-calendar-cl-cfcfcf"><span>' + (before[i]) + '</span><span>入住</span></div>')
+                dom.push('<a href="javascript:;" class="ue-calendar-grid ue-calendar-cl-cfcfcf"><span>' + (before[i]) + '</span><span>入住</span></a>')
             }
 
             // 本月日期显示
             for (; k < currentDate; k++) {
-                var curDate = util.formatDate(this.date.getFullYear + '-' + this.date.getMonth + '-' + (k + 1), this.defaults.dateFormat);
-                var cls = festival[curDate.getMonth + '-' + curDate.getDate] ? 'ue-calendar-grid ue-mini' : 'ue-calendar-grid';
-                var font = festival[curDate.getMonth + '-' + curDate.getDate] ? festival[curDate.getMonth + '-' + curDate.getDate] : '';
-                dom.push('<div class="' + (cls) + '" data-current="' + (curDate.date) + '" data-index="' + (k) + '"><span>' + (k + 1) + '</span><span>' + (font) + '</span></div>');
+                var curDate = this._updateDate(this.date.getFullYear + '-' + this.date.getMonth + '-' + (k + 1), true);
+                var isFestival = festival[curDate.getMonth + '-' + curDate.getDate];
+                var cfs = isFestival ? isFestival : '';
+                var cls = 'ue-calendar-grid';
+                // 是否是节日
+                cls += isFestival ? ' ue-mini ue-calendar-cl-03C7AD' : '';
+                // 是否是周六或周日
+                cls += curDate.getDay == 6 || curDate.getDay == 0 ? ' ue-calendar-cl-orange' : '';
+                // 是否是当前日期
+                cls += this.localDate.date == curDate.date ? ' ue-active' : '';
+                // 最大或最小
+                var isScreen = this.defaults.minDate && util.getStringDate(this.defaults.minDate) > util.getStringDate(curDate.date) || this.defaults.maxDate && util.getStringDate(this.defaults.maxDate) < util.getStringDate(curDate.date);
+                cls += isScreen ? ' ue-calendar-cl-cfcfcf' : '';
+
+                dom.push('<a href="javascript:;" class="' + (cls) + '"  ' + (isScreen ? "" : "data-current=" + (curDate.date)) + '  data-index="' + (k) + '"><span>' + (k + 1) + '</span><span>' + (cfs) + '</span></a>');
             }
 
             // 下一个月的日期显示
             for (; y < limit; y++) {
-                dom.push('<div class="ue-calendar-grid ue-calendar-cl-cfcfcf"><span>' + (y + 1) + '</span><span>入住</span></div>');
+                dom.push('<a href="javascript:;" class="ue-calendar-grid ue-calendar-cl-cfcfcf"><span>' + (y + 1) + '</span><span>入住</span></a>');
             }
 
             return dom.join('');
