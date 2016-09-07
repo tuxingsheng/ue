@@ -9,6 +9,7 @@
     <script type="text/javascript" src="../../src/ue-flex.min.js"></script>
     <link rel="stylesheet" href="../../src/ue.min.css">
     <link rel="stylesheet" href="../../plugins/calendar/calendar.css">
+    <link rel="stylesheet" href="../../plugins/toast/toast.css">
     <style>
         html, body, .ue-content {
             background-color: #fff;
@@ -48,6 +49,7 @@
 
 </body>
 <script type="text/javascript" src="../../src/ue.js"></script>
+<script type="text/javascript" src="../../plugins/toast/toast.js"></script>
 <script type="text/javascript" src="../../plugins/calendar/calendar.js"></script>
 <script>
     var calendar = new Calendar({
@@ -56,9 +58,9 @@
         //maxDate: '2016-10-5',
         //value: '2016-08-05',
         //dateFormat: 'yyyy/MM/dd',
-        onChange: function (ele, val) {
-            //alert('你选的日期：' + val);
-            console.log('你选的日期：' + val);
+        onChange: function (e, v) {
+            console.log('你选的日期：' + v);
+            toast('你选的日期：' + v);
         }
     });
 </script>
