@@ -169,8 +169,198 @@
     2、action.hide()
     ps：隐藏action
 
+###JS组件 - indicator.js(加载器)
+#### 配置参数说明
+```javascript
+    this.defaults = {
+        // 加载器类型（多种加载器可选择），默认是'snake'，还有'circle'
+        spinnerType: 'snake',
+        // 加载器文本内容
+        spinnerText: '加载中...',
+        // 是否隐藏加载器文本内容
+        spinnerTextClose: true,
+        // 设置加载器背景色
+        spinnerBgColor: 'transparent'
+    };
+```
+
+#### 使用
+
+    indicator.open({
+          spinnerText: '正在加载中...',
+          spinnerTextClose: false,
+          spinnerType: 'circle',
+          spinnerBgColor: 'rgba(0,0,0,.5)'
+    });
+
+###JS组件 - toast.js(toast提示)
+#### 使用
+
+    toast('欢迎来到ue世界', 2000);
+    toast('欢迎来到ue世界', 2000, 'center');
+
+
+###JS组件 - lazyLoadImg.js(图片懒加载)
+#### 配置参数说明
+```javascript
+    this.defaults = {
+        // 元素选择器
+        el: '[data-lazy]',
+        // 元素在顶部伸出的距离才加载
+        top: 0,
+        // 元素在左边伸出的距离才加载
+        left: 0,
+        // 元素在右边伸出的距离才加载
+        right: 0,
+        // 元素在底部伸出的距离才加载
+        bottom: 0,
+        // 滑动停止多久后开始加载
+        duration: 100,
+        // 是否开启debug模式
+        debug: true,
+        // 未加载时的默认图片
+        placeholder: '',
+        // 懒加载触发范围
+        selector: document,
+        // 加载之前执行方法
+        before: function () {
+
+        },
+        // 加载成功后回调方法
+        load: function (el) {
+
+        },
+        // 加载失败后回调方法
+        error: function (el) {
+
+        }
+    };
+```
+
+#### 使用
+
+    var lazyloadImg = new LazyloadImg({
+         el: '.ue-content [data-lazy]',
+         placeholder: './loading.png',
+         duration: 1500,
+         bottom: 50
+    });
+
+
+###JS组件 - slider.js(轮播图)
+#### 配置参数说明
+```javascript
+    this.defaults = {
+        // 元素选择器
+        el: '.ue-slider',
+        // 是否无缝循环
+        loop: true,
+        // 是否自动轮播
+        autoPlay: true,
+        // 自动轮播时间间隔
+        autoTime: 5000,
+        // 动画过度速度
+        speed: 300,
+        // 是否动态生成状态点
+        pagination: true
+    };
+```
+
+#### 使用
+
+    var slider = new Slider({
+         el: '.ue-slider',
+         autoTime: 4000
+    });
+
+
+###JS组件 - dialog.js(对话框)
+#### 配置参数说明
+```javascript
+    this.defaults = {
+        // dialog延迟关闭时间
+        delay: 0,
+        // dialog标题
+        title: '温馨提示',
+        // dialog文本内容
+        message: '欢迎来到ue世界',
+        // dialog按钮组
+        groupBtn: ['确定'],
+        // 是否显示title
+        isShowTitle: true,
+        // dialog点击执行之前的回调
+        before: function (e) {
+
+        },
+        // dialog点击执行之后的回调
+        after: function (e) {
+
+        },
+        // dialog被删除之后的回调
+        close: function (e) {
+
+        }
+    };
+```
+
+#### 使用
+
+    对dialog.js进行了再次封装，提供了alert和confirm两种模式
+
+    dialog.alert({
+        message: 'alert对话框',
+        callback: function () {
+             alert('消失了');
+        }
+    });
+
+    dialog.confirm({
+        message: 'confirm对话框',
+        callback: function (e) {
+            if (e == 1) {
+               alert('确认了');
+            }
+        }
+    });
 
 
 
+###JS组件 - popup.js(popup弹窗)
+#### 使用
+
+    popup的2种触发方式：
+    1、在触发的html元素上添加自定义属性data-popup，参数是对应的popup的id，如：data-popup="#appPopup"
+    2、引入popup.js，事件触发调用 popup.open()方法，该方法包含2个参数，第一个是对应的popup的id，第二个
+    参数是触发事件的元素或对象，如：popup.open('#appPopup', '#jsPopup') or popup.open('#appPopup', document.querySelector('#jsPopup'))
 
 
+###JS组件 - dialog.js(对话框)
+#### 使用
+
+    var validate = new Validate({
+        // 元素选择器
+        el: '.ue-content',
+        // 验证成功的回调
+        success: function () {
+           alert('验证成功');
+        },
+        // 验证失败的回调，返回失败信息
+        fail: function (err) {
+           alert(err);
+        }
+    });
+
+#### 内置验证规则
+
+     required	        必填，不能为空
+     match	            和另一个输入框的值保持一致
+     number	            数字
+     digits	            整数
+     mobile	            手机号码
+     tel	            座机号码，包括区号
+     email	            email地址
+     zip	            邮编
+     date	            日期，例如 2012-02-02，可自定义分割线，默认是'-'
+     url	            网址，协议是可选的
+     minlength	        最小长度
+     maxlength	        最大长度
