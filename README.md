@@ -77,8 +77,47 @@
 
 
 
+###JS组件 - picker.js(类似select的组件)
+#### 配置参数说明
+```javascript
+    this.defaults = {
+        // 某个picker元素
+        el: '.ue-picker',
+        // picker类型（默认 'normal'，还支持 'date'）
+        type: 'normal',
+        // 是否显示遮罩
+        showCover: true,
+        // 定义item高度
+        itemHeight: 40,
+        // 定义数据列表
+        items: [],
+        // 定义空白列表数量
+        spaceNum: 2,
+        // 配置Iscroll.probeType
+        probeType: 2,
+        // 定义返回值的分割线
+        apart: '',
+        // 定义显示的字段
+        show: 'text',
+        // 定义输出的字段
+        export: 'value',
+        // 滚动结束的回调函数
+        onScrollEnd: function () {
 
+        },
+        // 点击确认的回调函数
+        onConfirm: function () {
 
+        }
+    };
+```
+
+#### API接口
+
+    1、picker.show()
+    ps：显示picker
+    2、picker.hide()
+    ps：隐藏picker
 
 
 
