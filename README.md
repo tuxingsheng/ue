@@ -335,6 +335,10 @@
 
 
 ###JS组件 - dialog.js(对话框)
+#### 提醒
+
+    form元素上最好加上 onsubmit="return false;"，避免响应submit跳转
+
 #### 使用
 
     var validate = new Validate({
