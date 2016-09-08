@@ -72,30 +72,25 @@
 <script type="text/javascript" src="../../src/ue.min.js"></script>
 <script type="text/javascript" src="../../plugins/pull/pull.js"></script>
 <script>
-    var pullDown = new Pull({
+    var pull = new Pull({
         scroll: 'appScroll',
-        limit: 50,
-        pullUp: true,
-        pullDown: true,
-        pullUpSuccess: function () {
-            setTimeout(function () {
-                ajaxUpLoad();
-                if (upCount >= 25) {
-                    pullDown.scrollerUpEnd();
-                } else {
-                    pullDown.refresh();
-                }
-            }, 1500)
+        up: {
+            isOpen: true,
+            callback: function () {
+                setTimeout(function () {
+                    ajaxUpLoad();
+                    pull.endPullToRefresh(upCount >= 15);
+                }, 1500)
+            }
         },
-        pullDownSuccess: function () {
-            setTimeout(function () {
-                ajaxDownLoad();
-                if (downCount >= 10) {
-                    pullDown.scrollerDownEnd();
-                } else {
-                    pullDown.refresh();
-                }
-            }, 1500)
+        down: {
+            isOpen: true,
+            callback: function () {
+                setTimeout(function () {
+                    ajaxDownLoad();
+                    pull.endPullToRefresh(downCount >= 10);
+                }, 1500)
+            }
         }
     });
 

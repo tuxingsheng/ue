@@ -2198,12 +2198,12 @@
                 scroller: '.ue-scroll',
                 // 开启click事件监听
                 click: true,
-                // 禁用鼠标事件
-                disableMouse: true,
-                // 禁用指针事件
+                // 是否禁用鼠标事件
+                disableMouse: false,
+                // 是否禁用指针事件
                 disablePointer: true,
-                // 禁用滚轮事件
-                mouseWheel: false,
+                // 是否禁用滚轮事件
+                mouseWheel: true,
                 // 显示滚动条并淡入淡出
                 scrollbars: false,
                 fadeScrollbars: false,
@@ -2211,7 +2211,7 @@
                 // 有效值有：1, 2, 3。数值越高表示更活跃的探测。
                 // 探针活跃度越高对CPU的影响就越大
                 probeType: 2
-            }, opts, k;
+            }, opts;
             opts = e.dataset.scroll ? JSON.parse(e.dataset.scroll) : {
                 name: 'scroll-' + +new Date()
             };
@@ -2229,9 +2229,6 @@
                         setTimeout(function () {
                             scroll.refresh();
                         }, 350);
-                    }, false);
-                    element.addEventListener('touchmove', function (e) {
-                        e.preventDefault();
                     }, false);
                 });
             })(ue.iscrollList[opts.name], e);
