@@ -120,8 +120,54 @@
     ps：隐藏picker
 
 
+###JS组件 - calendar.js(日历组件)
+#### 配置参数说明
+```javascript
+    this.defaults = {
+        // 日期，默认null，例如：'2016-08-08'
+        value: null,
+        // 最小日期，默认null，例如：'2016-05-05'
+        minDate: null,
+        // 最大日期，默认null，例如：'2016-10-10'
+        maxDate: null,
+        // 是否开启弹窗模式，默认内联模式
+        isPopup: false,
+        // 当弹窗模式的时候，Input是否需要readOnly
+        inputReadOnly: true,
+        // nav文字内容
+        selectNav: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+        // 输出日期的格式，例如：'yyyy/MM/dd'
+        dateFormat: 'yyyy-MM-dd',
+        // 选择日期成功的回调，返回点击对象和日期
+        onChange: function (e, v) {
+            console.log('你选的日期：' + v);
+        }
+    };
+```
+
+###JS组件 - switch.js(开关)
+#### 说明
+
+    switch由class.ue-switch定义，.ue-switch-XXX定义switch的颜色，添加.ue-switch-mini定义大小，.ue-active定义点击状态
 
 
+###JS组件 - action.js(actionsheet)
+#### 配置参数说明
+```javascript
+    this.defaults = {
+        // action选择器
+        el: '.ue-action',
+        // 是否显示遮罩
+        showCover: true
+    };
+```
+
+#### API接口
+
+    1、action.show()
+    ps：显示action
+    2、action.hide()
+    ps：隐藏action
 
 
 
