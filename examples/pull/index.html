@@ -42,6 +42,7 @@
 <div class="ue-content ue-scroll-wrapper" data-scroll='{"name": "appScroll"}'>
     <div class="ue-scroll">
         <ul class="ue-row">
+            <li class="ue-col-xs-12 ue-table-view" id="resetDown">下拉重置刷新</li>
             <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
             <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
             <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
@@ -62,14 +63,13 @@
             <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
             <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
             <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
-            <li class="ue-col-xs-12 ue-table-view">Pull 11111111111111</li>
-            <li class="ue-col-xs-12 ue-table-view">Pull 22222222222222</li>
+            <li class="ue-col-xs-12 ue-table-view" id="resetUp">上拉重置刷新</li>
         </ul>
     </div>
 </div>
 <!-- 页面主体 -->
 </body>
-<script type="text/javascript" src="../../src/ue.min.js"></script>
+<script type="text/javascript" src="../../src/ue.js"></script>
 <script type="text/javascript" src="../../plugins/pull/pull.js"></script>
 <script>
     var pull = new Pull({
@@ -84,6 +84,7 @@
             }
         },
         down: {
+            auto: true,
             isOpen: true,
             callback: function () {
                 setTimeout(function () {
@@ -94,8 +95,8 @@
         }
     });
 
-    var downCount = 0;
     var upCount = 0;
+    var downCount = 0;
 
     function ajaxUpLoad() {
         var el = document.querySelector('.ue-row'), i = 0;
@@ -116,5 +117,17 @@
             el.insertBefore(li, el.childNodes[0]);
         }
     }
+
+    document.querySelector('#resetDown').addEventListener('click', function () {
+        alert('重置成功');
+        downCount = 0;
+        pull.resetPullToRefresh('down');
+    });
+
+    document.querySelector('#resetUp').addEventListener('click', function () {
+        alert('重置成功');
+        upCount = 0;
+        pull.resetPullToRefresh('up');
+    });
 </script>
 </html>

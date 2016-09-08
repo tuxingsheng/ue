@@ -7,15 +7,13 @@
  * 名称	            内容
  * scroll           某个scroll
  * limit            触发上限
- * pullUp           是否触发pullUp
+ * auto             是否初始化自动加载一次
  * pullDown         是否触发pullDown
- * pullInitDownName pullDown显示内容
- * pullInitUpName   pullUp显示内容
+ * pullInitName     pullDown显示内容
  * pullStartName    pull释放内容
  * pullLoadingName  pull加载内容
  * pullClearName    pull结束加载
- * pullUpSuccess    pullUp加载成功的回调
- * pullDownSuccess  pullDown加载成功的回调
+ * callback         pull加载成功的回调
  * */
 (function (window, document, ue) {
 
@@ -48,6 +46,7 @@
             scroll: 'appScroll',
             limit: 50,
             up: {
+                auto: false,
                 isOpen: false,
                 pullInitName: '上拉可以刷新',
                 pullStartName: '释放立即刷新',
@@ -58,6 +57,7 @@
                 }
             },
             down: {
+                auto: false,
                 isOpen: false,
                 pullInitName: '下拉可以刷新',
                 pullStartName: '释放立即刷新',
@@ -101,6 +101,14 @@
             this[this.defaults.pullState == 'down' ? '_pullDownState' : '_pullUpState'](3);
         }
         this.pull.refresh();
+    };
+
+    /*
+     * 重置刷新状态
+     * */
+    Pull.prototype.resetPullToRefresh = function (name) {
+        name = name || this.defaults.pullState;
+        this[name == 'down' ? '_pullDownState' : '_pullUpState'](0);
     };
 
     /*
@@ -161,22 +169,31 @@
      * 绑定处理事件
      * */
     Pull.prototype._bindEvent = function () {
-        var self = this, count = 0, timer = null;
+        var self = this, timer = null;
+
+        if (self.defaults.up.auto) {
+            self._pullUpState(2);
+            self.defaults.up.callback();
+            self.defaults.up.auto = false;
+        }
+
+        if (self.defaults.down.auto) {
+            self._pullDownState(2);
+            self.defaults.down.callback();
+            self.defaults.down.auto = false;
+        }
 
         this.pull.on('scrollEnd', function () {
             // scrollEnd...
         });
 
         this.pull.on('refresh', function () {
-            if (count != 0) {
-                count = 0;
-                clearInterval(timer);
-                if (self.pullDownState != 3 && self.defaults.down.isOpen) {
-                    self._pullDownState(0);
-                }
-                if (self.pullUpState != 3 && self.defaults.up.isOpen) {
-                    self._pullUpState(0);
-                }
+            clearInterval(timer);
+            if (self.pullDownState != 3 && self.defaults.down.isOpen) {
+                self._pullDownState(0);
+            }
+            if (self.pullUpState != 3 && self.defaults.up.isOpen) {
+                self._pullUpState(0);
             }
         });
 
@@ -197,7 +214,6 @@
 
         this.pull.scroller.addEventListener('touchend', function () {
             if (self.pull.y > self.defaults.limit && self.defaults.down.isOpen) {
-                count++;
                 self.defaults.pullState = 'down';
                 if (self.pullDownState == 1) {
                     self._pullDownState(2);
@@ -205,7 +221,6 @@
                 }
             }
             if (self.pull.maxScrollY > self.pull.y && self.defaults.up.isOpen) {
-                count++;
                 self.defaults.pullState = 'up';
                 if (self.pullUpState == 1) {
                     self._pullUpState(2);

@@ -2224,8 +2224,8 @@
                 ue.horizontal(opts.name);
             }
             (function (scroll, element) {
-                ['DOMContentLoaded', 'load', 'pageshow', 'resize', 'orientationchange', 'haschange', 'readystatechange'].forEach(function (e, i) {
-                    window.addEventListener(e, function () {
+                ['load', 'resize', 'orientationchange', 'haschange', 'readystatechange'].forEach(function (e, i) {
+                    scroll.wrapper.addEventListener(e, function () {
                         setTimeout(function () {
                             scroll.refresh();
                         }, 350);
@@ -2464,7 +2464,7 @@
         return results;
     };
 
-    var hasParent = function(node, parent) {
+    var hasParent = function (node, parent) {
         while (node) {
             if (node == parent) {
                 return true;
