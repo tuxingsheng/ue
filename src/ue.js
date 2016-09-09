@@ -2198,10 +2198,6 @@
                 scroller: '.ue-scroll',
                 // 开启click事件监听
                 click: true,
-                // 是否禁用鼠标事件
-                //disableMouse: true,
-                // 是否禁用指针事件
-                disablePointer: true,
                 // 是否禁用滚轮事件
                 mouseWheel: true,
                 // 显示滚动条并淡入淡出
