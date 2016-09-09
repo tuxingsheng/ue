@@ -188,12 +188,16 @@
         });
 
         this.pull.on('refresh', function () {
-            clearInterval(timer);
-            if (self.pullDownState != 3 && self.defaults.down.isOpen) {
-                self._pullDownState(0);
-            }
-            if (self.pullUpState != 3 && self.defaults.up.isOpen) {
-                self._pullUpState(0);
+            if (self.pull.pullInitState) {
+                clearInterval(timer);
+                if (self.pullDownState != 3 && self.defaults.down.isOpen) {
+                    self._pullDownState(0);
+                }
+                if (self.pullUpState != 3 && self.defaults.up.isOpen) {
+                    self._pullUpState(0);
+                }
+            } else {
+                self.pull.pullInitState = true;
             }
         });
 

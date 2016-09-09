@@ -2223,6 +2223,8 @@
                 ['load', 'resize', 'orientationchange', 'haschange'].forEach(function (e, i) {
                     window.addEventListener(e, function () {
                         setTimeout(function () {
+                            // 初始化pull为false，防止触发refresh事件
+                            scroll.pullInitState = false;
                             scroll.refresh();
                         }, 350);
                     }, false);
