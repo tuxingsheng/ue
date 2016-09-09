@@ -2199,7 +2199,7 @@
                 // 开启click事件监听
                 click: true,
                 // 是否禁用鼠标事件
-                disableMouse: false,
+                disableMouse: true,
                 // 是否禁用指针事件
                 disablePointer: true,
                 // 是否禁用滚轮事件
@@ -2224,8 +2224,8 @@
                 ue.horizontal(opts.name);
             }
             (function (scroll, element) {
-                ['load', 'resize', 'orientationchange', 'haschange', 'readystatechange'].forEach(function (e, i) {
-                    scroll.wrapper.addEventListener(e, function () {
+                ['load', 'refresh', 'resize', 'orientationchange', 'haschange', 'readystatechange'].forEach(function (e, i) {
+                    document.addEventListener(e, function () {
                         setTimeout(function () {
                             scroll.refresh();
                         }, 350);
@@ -2254,7 +2254,7 @@
             if (ue.util.hasClass(e, 'ue-active')) {
                 ue.iscrollList[name].scrollTo(i == 0 ? 0 : -ucScrollRange * (i + 1), 0, 1000);
             }
-            e.addEventListener('click', function () {
+            e.addEventListener('tap', function () {
                 for (var x = 0; x < ucItems.length; x++) {
                     ucItems[x].classList.remove('ue-active');
                 }

@@ -125,6 +125,7 @@
             trigger.setAttribute('data-popup', popupId);
             this.popupList.push(pop);
             this.popover(trigger);
+
         }
     };
 
