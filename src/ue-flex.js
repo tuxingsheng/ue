@@ -81,6 +81,7 @@
         }
         // 根节点 fontSize 根据宽度决定
         var baseSize = winWidth / 10;
+        docElem.style.visibility = 'hidden';
         docElem.style.fontSize = baseSize + 'px';
         flexible.rem = win.rem = baseSize;
     }
@@ -105,16 +106,19 @@
         }
     }, false);
 
+    setFontSize();
+
     // 设置基准字体
     if ('complete' === doc.readyState) {
+        docElem.style.visibility = 'visible';
         doc.body.style.fontSize = 12 * dpr + 'px';
     } else {
         doc.addEventListener('DOMContentLoaded', function () {
+            docElem.style.visibility = 'visible';
             doc.body.style.fontSize = 12 * dpr + 'px';
         }, false);
     }
 
-    setFontSize();
 
     flexible.dpr = win.dpr = dpr;
     flexible.refreshRem = setFontSize;
