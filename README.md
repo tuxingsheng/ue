@@ -334,7 +334,7 @@
     参数是触发事件的元素或对象，如：popup.open('#appPopup', '#jsPopup') or popup.open('#appPopup', document.querySelector('#jsPopup'))
 
 
-###JS组件 - dialog.js(对话框)
+###JS组件 - validate.js(表单验证)
 #### 提醒
 
     form元素上最好加上 onsubmit="return false;"，避免响应submit跳转
