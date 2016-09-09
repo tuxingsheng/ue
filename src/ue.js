@@ -2220,7 +2220,7 @@
                 ue.horizontal(opts.name);
             }
             (function (scroll, element) {
-                ['load', 'refresh', 'resize', 'orientationchange', 'haschange', 'readystatechange'].forEach(function (e, i) {
+                ['load', 'resize', 'orientationchange', 'haschange'].forEach(function (e, i) {
                     document.addEventListener(e, function () {
                         setTimeout(function () {
                             scroll.refresh();
