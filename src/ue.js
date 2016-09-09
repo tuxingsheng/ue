@@ -2221,7 +2221,7 @@
             }
             (function (scroll, element) {
                 ['load', 'resize', 'orientationchange', 'haschange'].forEach(function (e, i) {
-                    document.addEventListener(e, function () {
+                    window.addEventListener(e, function () {
                         setTimeout(function () {
                             scroll.refresh();
                         }, 350);

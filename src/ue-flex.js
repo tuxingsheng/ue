@@ -74,6 +74,8 @@
         }
     }
 
+    docElem.style.visibility = 'hidden';
+
     function setFontSize() {
         var winWidth = docElem.getBoundingClientRect().width;
         if (winWidth / dpr >= 768) {
@@ -83,26 +85,34 @@
         var baseSize = winWidth / 10;
         docElem.style.visibility = 'hidden';
         docElem.style.fontSize = baseSize + 'px';
-        flexible.rem = win.rem = baseSize;
-    }
+        flexible.rem = win.rem = baseSize;}
 
     // 调整窗口时重置
     win.addEventListener('resize', function () {
         clearTimeout(timer);
-        timer = setTimeout(setFontSize, 300);
+        timer = setTimeout(function(){
+            setFontSize();
+            docElem.style.visibility = 'visible';
+        }, 300);
     }, false);
 
     // 旋转窗口时重置
     win.addEventListener('orientationchange', function () {
         clearTimeout(timer);
-        timer = setTimeout(setFontSize, 300);
+        timer = setTimeout(function(){
+            setFontSize();
+            docElem.style.visibility = 'visible';
+        }, 300);
     }, false);
 
     // pageshow: 倒退 缓存相关
     win.addEventListener('pageshow', function (e) {
         if (e.persisted) {
             clearTimeout(timer);
-            timer = setTimeout(setFontSize, 300);
+            timer = setTimeout(function(){
+                setFontSize();
+                docElem.style.visibility = 'visible';
+            }, 300);
         }
     }, false);
 
