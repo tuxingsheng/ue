@@ -331,7 +331,8 @@
     popup的2种触发方式：
     1、在触发的html元素上添加自定义属性data-popup，参数是对应的popup的id，如：data-popup="#appPopup"
     2、引入popup.js，事件触发调用 popup.open()方法，该方法包含2个参数，第一个是对应的popup的id，第二个
-    参数是触发事件的元素或对象，如：popup.open('#appPopup', '#jsPopup') or popup.open('#appPopup', document.querySelector('#jsPopup'))
+    参数是触发事件的元素或对象，如：popup.open('#appPopup', '#jsPopup') or popup.open('#appPopup', 
+    document.querySelector('#jsPopup'))
 
 
 ###JS组件 - validate.js(表单验证)
